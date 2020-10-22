@@ -13,7 +13,7 @@ Name of the game is simple, aggregate sample-applications that super-charge the 
 
 The repository is currently structured as follows. Since this is a community-based repository, the structure can change based on feedback.
 
-``/<category>/<sample_app>`
+`/<category>/<sample_app>`
 
 Each `<category>` and `<sample_app>` must have a README.md.
 
