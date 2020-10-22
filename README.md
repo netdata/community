@@ -41,4 +41,6 @@ Until then, simply fork the repository and create a PR.
     - By creating a new Netdata Agent collector
 - ??
 
+# License
 
+MIT License 
