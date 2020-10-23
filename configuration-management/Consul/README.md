@@ -36,9 +36,9 @@ Thus, this tutorial assumes that for every Netdata Agent, there is a consul-temp
 
 # Instructions
 
-System: Ubuntu 18.04.4 LT
-Scenario: Dynamically change the warning/critical levels for the `10min_cpu_usage` alarm of `health.d/cpu.conf`
-Configuration for Consul-Template:
+ - System: Ubuntu 18.04.4 LT
+ - Scenario: Dynamically change the warning/critical levels for the `10min_cpu_usage` alarm of `health.d/cpu.conf`
+ - Configuration for Consul-Template:
 ```
 template {
   source = "<absolute_path>/template.ctmpl"
