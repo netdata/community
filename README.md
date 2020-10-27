@@ -7,6 +7,8 @@ Name of the game is simple, aggregate sample-applications that super-charge the 
 # Table of Contents
 - Configuration Management
     -  Consul
+- Netdata Agent API
+    -  netdata-pandas
 
 
 # Repository Structure
