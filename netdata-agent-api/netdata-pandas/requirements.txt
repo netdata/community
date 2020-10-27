@@ -2,3 +2,4 @@ netdata-pandas==0.0.27
 jupyter==1.0.0
 jupyterlab==2.2.8
 adtk==0.6.2
+seaborn==0.11.0
