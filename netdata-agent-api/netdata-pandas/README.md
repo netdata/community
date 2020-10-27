@@ -17,4 +17,4 @@ To run the notebooks you have two options:
 
 or
 
-(2) run each notebook in [Google Colab](https://colab.research.google.com/) by pressing the "Open in Colab" button at the top of each notebook. Once the notebook is opened in Google Colab you will then just need to uncomment the first code cell to install the relevant python packages for that notebook into the envoirnemnt Google Colab has spun up for you (**note**: Google Colab offers free notebooks in the cloud so can be a great way to start playing with Python without having to worry about setting up your own Python environment on you computer). 
+(2) run each notebook in [Google Colab](https://colab.research.google.com/) by pressing the "Open in Colab" button at the top of each notebook. Once the notebook is opened in Google Colab you will then just need to uncomment the first code cell to install the relevant python packages for that notebook into the environment Google Colab has spun up for you (**note**: Google Colab offers free notebooks in the cloud so can be a great way to start playing with Python without having to worry about setting up your own Python environment on you computer). 
