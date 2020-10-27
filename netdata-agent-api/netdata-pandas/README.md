@@ -6,8 +6,8 @@
 
 In this directory there are a number of sample [Jupyter](https://jupyter.org/) notebooks showing some usage of the netdata-pandas package.
 
-- [correlation_heatmap.ipynb](correlation_heatmap.ipynb): A notebook that pulls some recent data from multiple hosts and plots some pretty correlation heatmaps. 
-- [anomaly_detection.ipynb](anomaly_detection.ipynb): A notebook that pulls some recent data from a specific node and runs it though various anomaly detection algorithms using the awesome [ADTK](https://adtk.readthedocs.io/en/stable/index.html) library. 
+- [correlation_heatmap.ipynb](correlation_heatmap.ipynb): A notebook that pulls some recent data from multiple hosts and plots some pretty correlation heatmaps (view on nbviewer [here](https://nbviewer.jupyter.org/github/netdata/netdata-community/blob/master/netdata-agent-api/netdata-pandas/anomaly_detection.ipynb)). 
+- [anomaly_detection.ipynb](anomaly_detection.ipynb): A notebook that pulls some recent data from a specific node and runs it though various anomaly detection algorithms using the awesome [ADTK](https://adtk.readthedocs.io/en/stable/index.html) library (view on nbviewer [here](https://nbviewer.jupyter.org/github/netdata/netdata-community/blob/master/netdata-agent-api/netdata-pandas/anomaly_detection.ipynb)). 
 
 ## Getting Started
 
