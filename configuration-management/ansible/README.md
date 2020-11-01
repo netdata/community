@@ -1,8 +1,8 @@
 # Deploy Netdata with Ansible
 
 Use this [Ansible](https://www.ansible.com/) playbook to quickly deploy the Netdata Agent to one or more remote nodes
-and claim them to Netdata Cloud in a few steps. Excellent for demo-ing Netdata's single-node and infrastructure
-monitoring capabilities!
+and claim them to Netdata Cloud. Excellent for demo-ing Netdata's single-node and infrastructure monitoring
+capabilities!
 
 This Ansible playbook does the following to every node in the `hosts` file.
 
