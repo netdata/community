@@ -19,6 +19,7 @@ This Ansible playbook does the following to every node in the `hosts` file.
 This playbook has been tested on:
 
 -   Ubuntu 20.04
+-   CentOS 7
 
 ## Quickstart
 
@@ -54,14 +55,15 @@ doc](https://learn.netdata.cloud/docs/agent/daemon/config) for details about eac
 For example, if you want to increase metrics retention, increase `dbengine_multihost_disk_space` and run the playbook
 again.
 
-You could also create entirely new templates with this method. For example, if you want to control the `alarm-notify.sh`
-script with this playbook, create a new file called `templates/alarm-notify.sh` and add the settings you want to
-control. Add relevant variables to `vars/main.yml`, then create a new template task in `tasks/configure.yml`:
+You could also create entirely new templates with this method. For example, if you want to control the
+`health_alarm_notify.conf` script with this playbook, create a new file called `templates/health_alarm_notify.conf` and
+add the settings you want to control. Add relevant variables to `vars/main.yml`, then create a new template task in
+`tasks/configure.yml`:
 
 ```yml
   - template:
-      src: ../templates/alarm-notify.sh.j2
-      dest: /etc/netdata/alarm-notify.sh
+      src: ../templates/health_alarm_notify.conf.j2
+      dest: /etc/netdata/health_alarm_notify.conf
       owner: root
       group: root
       mode: u=wrx,g=rx,o=r,+x
