@@ -2,14 +2,15 @@
 
 Welcome to the community-curated repository of Netdata. 
 
-Name of the game is simple, aggregate sample-applications that super-charge the Netdata experience and can serve as boilerplates or examples.
+Name of the game is simple, aggregate sample-applications that super-charge the Netdata experience and can serve as boilerplate or examples.
 
 # Table of Contents
 - Configuration Management
-    - Consul
-    - Ansible
+    - [consul-quickstart](/configuration-management/consul-quickstart/)
 - Netdata Agent API
-    -  netdata-pandas
+    -  [netdata-pandas](/netdata-agent-api/netdata-pandas/)
+- Netdata Agent Deployment
+  - [ansible-quickstart](/netdata-agent-deployment/ansible-quickstart/)
 
 
 # Repository Structure
@@ -18,7 +19,7 @@ The repository is currently structured as follows. Since this is a community-bas
 
 `/<category>/<sample_app>`
 
-Each `<category>` and `<sample_app>` must have a README.md.
+Each `<category>` and `<sample_app>` **must** have a README.md.
 
 - `/category/README.md`: This README offers a simple explanation of the category (e.g what is configuration management)
 - `/category/sample_app/README.md`: This README should offer instructions for the user on how to install, configure and use the `sample_app`.
