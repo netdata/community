@@ -1,0 +1,1 @@
+A Developer Environment (or devenv for short) is a workspace for developers to make changes without breaking anything in a live environment. 
