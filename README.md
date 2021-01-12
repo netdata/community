@@ -27,12 +27,12 @@ Each `<category>` and `<sample_app>` **must** have a README.md.
 
 # Contributing
 
-This repository will be evolved alongside the community, with stricter contributing guidelines & Code of Conduct being on their way.
+This repository will be evolved alongside the community, with more specific contributing guidelines being on their way.
 
-Until then, simply fork the repository and create a PR. 
+Until then, simply fork the repository, add your contribution, and perform a PR. 
 
 ## Ideas for contribution
-- Improve an existing Sample-App in code or documentatin
+- Improve an existing Sample-App in code or documentation
 - Submit a new sample-app in an existing category
 - Submit a new sample app in a new category
 
@@ -48,3 +48,6 @@ Until then, simply fork the repository and create a PR.
 # License
 
 MIT License 
+
+# Code of Conduct
+Read our [CODE_OF_CONDUCT.md](/CODE_OF_CONDUCT.md)
