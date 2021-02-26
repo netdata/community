@@ -3,7 +3,7 @@ name: Development Environment
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - '.github/workflows/devenv.yml'
       - 'devenv/**'
