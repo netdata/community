@@ -11,6 +11,7 @@ Name of the game is simple, aggregate sample-applications that super-charge the 
     -  [netdata-pandas](/netdata-agent-api/netdata-pandas/)
 - Netdata Agent Deployment
   - [ansible-quickstart](/netdata-agent-deployment/ansible-quickstart/)
+- [Developer Environment](/devenv)
 
 
 # Repository Structure
