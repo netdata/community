@@ -1,5 +1,5 @@
 {
-    "image": "odyslam/devenv", 
+    "image": "netdata/devenv", 
     "extensions":[
 		"golang.go",
 		"exiasr.hadolint",
