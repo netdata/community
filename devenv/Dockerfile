@@ -3,6 +3,7 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /root/
+# hadolint ignore=DL3005,DL3008
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends git apt-utils curl tar wget yamllint shellcheck flake8 golang python3-pip ca-certificates  && rm -rf /var/lib/apt/lists/*
 RUN curl -o ./install-required-packages.sh https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/install-required-packages.sh && chmod +x ./install-required-packages.sh && ./install-required-packages.sh netdata-all --non-interactive
 # Hadolint is vendored only for x86_64 architectures
