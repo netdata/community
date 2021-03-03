@@ -30,7 +30,7 @@ This devenv makes use of:
 - `copy` and `paste` the `.devcontainer` folder inside the `netdata` directory. You will find the `.devcontainer` folder inside the community repository you just downloaded: `community/devenv/.devcontainer`.
 - Open the `netdata` directory using VS Code and click on the popup as it is shown in the GIF bellow. It will re-open the directory from **inside** the Netdata Devenv.
   
-![VS code](https://microsoft.github.io/vscode-remote-release/images/remote-containers-readme.gif)
+![VS code](remote-containers-readme.gif)
 
 - This directory is synced in **real time** between your development machine and the developer container. Any file that you place inside the `netdata` directory, will be copied inside the `netdata` directory of the container.
   
