@@ -10,7 +10,7 @@ You only need to download your forked repositories and you can begin developing 
 
 # Dockerfile
 
-Inside this repository you can find the Dockerfile which is used to create the Docker Container. It is automatically published on [DockerHub](https://hub.docker.com/r/netdata/devenv), using a CI/CD pipeline based on GitHub Actions. 
+Inside this repository you can find the Dockerfile which is used to create the development environment Docker image. It is automatically published on [DockerHub](https://hub.docker.com/r/netdata/devenv), using a CI/CD pipeline based on GitHub Actions. 
 
 # How to use the Devenv 
 
