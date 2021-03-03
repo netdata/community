@@ -43,3 +43,11 @@ Finally, we have installed some  VS Code extensions that you might need, but you
 ## The hard way
 
 You are free to `docker pull netdata/devenv` the container, attach a terminal session to it and start developing right away! The container has everything you need to get going.
+
+# Supported Netdata repositories
+
+The devenv includes all the dependencies required to develop for the following repositories:
+- netdata/netdata 
+- netdata/dashboard
+- netdata/go.d.plugin
+- netdata/helmchart
