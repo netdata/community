@@ -4,8 +4,7 @@ A Developer Environment (or devenv for short) is a workspace for developers to m
 
 In order to foster contribution for the Netdata Agent and it's various collectors, we created an image that is a devenv on it's own, a fully containerized environment where it has everything a developer needs to develop improvements on the Netdata Agent itself or it's collectors.
 
-We have included all the dependencies that you need to build the Netdata Agent and it's collectors. Moreover, we have included helpful tools such as `python pip` and `flake8`. 
-
+We have included all the dependencies that you need to build the Netdata Agent and it's collectors. We have additionally included many of the tools we use for checking PRs, including various linters like `flake8` and `shellcheck`
 You only need to download your forked repositories and you can begin developing right away!
 
 # Dockerfile
@@ -15,9 +14,11 @@ Inside this repository you can find the Dockerfile which is used to create the d
 # How to use the Devenv 
 
 This devenv makes use of:
-- [VS Code](https://code.visualstudio.com/), one of the most used open source editors on the Internet.
-- [Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) VS Code extension.
-- [Docker](https://www.docker.com/).
+- Required:
+  - [Docker](https://www.docker.com/)
+- Optional:
+  - [VS Code](https://code.visualstudio.com/), one of the most used open source editors on the Internet.
+  - [Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) VS Code extension.
 
 ## Quickstart
 
