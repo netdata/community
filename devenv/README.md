@@ -24,13 +24,13 @@ This devenv makes use of:
 
 - [Download](https://code.visualstudio.com/download) VS Code.
 - [Download](https://www.docker.com/products/docker-desktop) Docker.
-- Fork the GitHub repository you want to contribute to, for example: [netdata/netdata](https://github.com/netdata/netdata)
-- Clone the forked repository to your development machine, for example: `git clone https://github.com/odyslam/netdata netdata`.
-- Clone the community repository, for example: `git clone https://github.com/netdata/community community`.
+- Fork the GitHub repository you want to contribute to: [netdata/netdata](https://github.com/netdata/netdata)
+- Clone the forked repository to your development machine: `git clone https://github.com/odyslam/netdata netdata`.
+- Clone the community repository: `git clone https://github.com/netdata/community community`.
 - `copy` and `paste` the `.devcontainer` folder inside the `netdata` directory. You will find the `.devcontainer` folder inside the community repository you just downloaded: `community/devenv/.devcontainer`.
 - Open the `netdata` directory using VS Code and click on the popup as it is shown in the GIF bellow. It will re-open the directory from **inside** the Netdata Devenv.
   
-![VS code example](https://microsoft.github.io/vscode-remote-release/images/remote-containers-readme.gif)
+![VS code](remote-containers-readme.gif)
 
 - This directory is synced in **real time** between your development machine and the developer container. Any file that you place inside the `netdata` directory, will be copied inside the `netdata` directory of the container.
   
