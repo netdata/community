@@ -13,8 +13,9 @@ RUN export PATH=$PATH:/usr/local/go/bin
 RUN go version
 # Dependencies required for netdata/dashboard
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt install -y --no-install-recommends yarn nodejs
+RUN npm install --global --unsafe-perm --force yarn 
+
 
 EXPOSE 19999
 ENTRYPOINT ["tail", "-f", "/dev/null"]
