@@ -2,9 +2,9 @@
 
 A Developer Environment (or devenv for short) is a workspace for developers to make changes without breaking anything in a live environment. 
 
-In order to foster contribution for the Netdata Agent and it's various collectors, we created an image that is a devenv on it's own, a fully containerized environment where it has everything a developer needs to develop improvements on the Netdata Agent itself or it's collectors.
+In order to foster contribution for the Netdata Agent and it's various collectors, we created an image that is a devenv on its own, a fully containerized environment that has everything a developer needs to develop improvements on the Netdata Agent itself, or its collectors.
 
-We have included all the dependencies that you need to build the Netdata Agent and it's collectors. We have additionally included many of the tools we use for checking PRs, including various linters like `flake8` and `shellcheck`
+We have included all the dependencies that you need to build the Netdata Agent and its collectors. We have additionally included many of the tools we use for checking PRs, including various linters like `flake8` and `shellcheck`.
 You only need to download your forked repositories and you can begin developing right away!
 
 # Dockerfile
