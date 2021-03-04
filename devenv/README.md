@@ -24,7 +24,7 @@ This devenv makes use of:
 
 - [Download](https://code.visualstudio.com/download) VS Code.
 - [Download](https://www.docker.com/products/docker-desktop) Docker.
-- Fork the GitHub repository you want to contribute to: [netdata/netdata](https://github.com/netdata/netdata)
+- Fork the GitHub repository you want to contribute to, e.g [netdata/netdata](https://github.com/netdata/netdata)
 - Clone the forked repository to your development machine: `git clone https://github.com/odyslam/netdata netdata`.
 - Clone the community repository: `git clone https://github.com/netdata/community community`.
 - `copy` and `paste` the `.devcontainer` folder inside the `netdata` directory. You will find the `.devcontainer` folder inside the community repository you just downloaded: `community/devenv/.devcontainer`.
