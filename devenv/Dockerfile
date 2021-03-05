@@ -27,8 +27,8 @@ RUN apt-get update && \
 
 ADD https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/install-required-packages.sh /install-required-packages.sh
 
-RUN chmod +x install-required-packages.sh && \
-    install-required-packages.sh netdata-all --non-interactive --dont-wait && \
+RUN chmod +x /install-required-packages.sh && \
+    /install-required-packages.sh netdata-all --non-interactive --dont-wait && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 EXPOSE 19999
