@@ -21,8 +21,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Check if we could push the built image
+        run: |
+          [ -n "${{ secrets.DOCKER_USERNAME }}" ] && echo "can_upload=true" >> $GITHUB_ENV ; true
       - name: Determine if we should push changes and which tags to use
-        if: (github.event_name == 'workflow_dispatch' || github.event.name == 'push' || github.event.name == 'schedule') && secrets.DOCKER_USERNAME !+ '' && secrets.DOCKER_TOKEN != ''
+        if: (github.event_name == 'workflow_dispatch' || github.event.name == 'push' || github.event.name == 'schedule') && env.can_upload == 'true'
         run: |
           echo "publish=true" >> $GITHUB_ENV
       - name: Determine if we should push changes and which tags to use
