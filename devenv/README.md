@@ -51,3 +51,8 @@ The devenv includes all the dependencies required to develop for the following r
 - netdata/dashboard
 - netdata/go.d.plugin
 - netdata/helmchart
+
+# Contributors
+
+- [@ferroin](https://github.com/Ferroin)
+- [@odyslam](https://github.com/odyslam)
