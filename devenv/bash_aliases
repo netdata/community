@@ -1,0 +1,21 @@
+export NETDATA_INSTALL_PREFIX="$HOME/netdata"
+export NETDATA_LOG_DIR="$NETDATA_INSTALL_PREFIX/netdata/var/log/netdata"
+export PATH=$NETDATA_INSTALL_PREFIX/netdata/usr/sbin:$PATH
+export NETDATA_DEV_CFLAGS="'-Og -ggdb -Wall -Wextra -Wformat-signedness -fstack-protector-all -DNETDATA_INTERNAL_CHECKS=1 -D_FORTIFY_SOURCE=2 -DNETDATA_VERIFY_LOCKS=1" ./netdata-installer.sh --disable-lto --dont-wait
+'"
+
+alias n_edit_config="vim $NETDATA_INSTALL_PREFIX/netdata/etc/netdata/netdata.conf"
+alias nconf="CFLAGS=${NETDATA_DEV_CFLAGS} ./configure \
+        CFLAGS=${NETDATA_DEV_CFLAGS} \
+        --prefix=\"${NETDATA_INSTALL_PREFIX}/netdata/usr\" \
+        --sysconfdir=\"${NETDATA_INSTALL_PREFIX}/netdata/etc\" \
+        --localstatedir=\"${NETDATA_INSTALL_PREFIX}/netdata/var\" \
+        --libexecdir=\"${NETDATA_INSTALL_PREFIX}/netdata/usr/libexec\" \
+        --libdir=\"${NETDATA_INSTALL_PREFIX}/netdata/usr/lib\" \
+        --with-zlib \
+        --with-math \
+        --with-user=netdata \
+        --disable-lto"
+alias nreconf="autoreconf -ivf"
+alias netdata-install="CFLAGS=${NETDATA_DEV_CFLAGS} ./netdata-installer.sh --install $NETDATA_INSTALL_PREFIX --disable-telemetry --dont-start-it --dont-wait --disable-lto"
+alias netdata-build="nreconf && nconf && make"
