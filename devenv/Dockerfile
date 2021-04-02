@@ -23,7 +23,7 @@ RUN apt-get update && \
                                                yamllint && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/* && \
     npm install --global --unsafe-perm --force yarn && \
-    [ "$(uname -m)" = "x86_64" ] && curl -o /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.23.0/hadolint-Linux-x86_64 && chmod +x /bin/hadolint; true
+    [ "$(uname -m)" = "x86_64" ] && curl -o /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.1.0/hadolint-Linux-x86_64 && chmod +x /bin/hadolint; true
 
 ADD https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/install-required-packages.sh /install-required-packages.sh
 
