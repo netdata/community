@@ -28,14 +28,20 @@ Each `<category>` and `<sample_app>` **must** have a README.md.
 
 # Contributing
 
-This repository will be evolved alongside the community, with more specific contributing guidelines being on their way.
+- Make sure you take a look at the [Contributing Handbook](https://learn.netdata.cloud/contribute/handbook). It covers the whole range of contributinons for the Netdata ecosystem. We reference the guidelines about contributions, as also tips for specific areas (e.g docs). 
+- For the Community repository speicifically, here are a couple of ideas:
+    - Improve an existing Sample-App in code or documentation
+    - Submit a new sample-app in an existing category
+    - Submit a new sample app in a new category
 
-Until then, simply fork the repository, add your contribution, and perform a PR. 
-
-## Ideas for contribution
-- Improve an existing Sample-App in code or documentation
-- Submit a new sample-app in an existing category
-- Submit a new sample app in a new category
+## Workflow
+- Fork this repository
+- Clone the forked repository locally
+- Add your sample-application
+    - Add relevant documentation by creating a README.md
+    - Honour the existing directory structure: `<category>/<sub-category>/<sample-app>`
+- Push the changes to your fork, preferablly to a branch and not master.
+- PR the changes from your fork to this repository
 
 ### Sample Categories
 - Configuration Management for Netdata Agent
@@ -51,4 +57,5 @@ Until then, simply fork the repository, add your contribution, and perform a PR.
 MIT License 
 
 # Code of Conduct
-Read our [CODE_OF_CONDUCT.md](/CODE_OF_CONDUCT.md)
+
+This repository is part of the Netdata organization, thus the Netdata [Code of Conduct](https://learn.netdata.cloud/contribute/code-of-conduct) applies.
