@@ -29,6 +29,7 @@ Each `<category>` and `<sample_app>` **must** have a README.md.
 # Contributing
 
 - Make sure you take a look at the [Contributing Handbook](https://learn.netdata.cloud/contribute/handbook). It covers the whole range of contributinons for the Netdata ecosystem. We reference the guidelines about contributions, as also tips for specific areas (e.g docs). 
+- If you need any help or feedback, create a topic on our [Community Forums](https://community.netdata.cloud/c/agent-development/9). We have a whole category just for developing and improving Netdata, so the community would to hear from you.
 - For the Community repository speicifically, here are a couple of ideas:
     - Improve an existing Sample-App in code or documentation
     - Submit a new sample-app in an existing category
