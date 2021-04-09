@@ -31,6 +31,8 @@ RUN chmod +x /install-required-packages.sh && \
     /install-required-packages.sh netdata-all --non-interactive --dont-wait && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
+COPY ./bash_aliases /root/.bash_aliases
+
 EXPOSE 19999
 
 CMD ["tail", "-f", "/dev/null"]
