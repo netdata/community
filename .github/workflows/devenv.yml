@@ -12,7 +12,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/devenv.yml'
-      - 'devenv/**'
+      - 'apps/devenv/**'
   workflow_dispatch:
 jobs:
   docker-build:
