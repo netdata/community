@@ -8,7 +8,7 @@ on:
       - main
     paths:
       - '.github/workflows/devenv.yml'
-      - 'devenv/**'
+      - 'apps/devenv/**'
   pull_request:
     paths:
       - '.github/workflows/devenv.yml'
