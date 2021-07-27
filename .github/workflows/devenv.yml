@@ -8,11 +8,11 @@ on:
       - main
     paths:
       - '.github/workflows/devenv.yml'
-      - 'apps/devenv/**'
+      - 'devenv/**'
   pull_request:
     paths:
       - '.github/workflows/devenv.yml'
-      - 'apps/devenv/**'
+      - 'devenv/**'
   workflow_dispatch:
 jobs:
   docker-build:
