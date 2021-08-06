@@ -2,7 +2,7 @@
 title: 1-Wire Sensors collector 
 date: 2021-01-03
 tags: [collector, python.d]
-social_image: '/media/1wire.png'
+social_image: '/media/w1sensor.png'
 description: A collector that monitors sensor temperatures 
 ---
 

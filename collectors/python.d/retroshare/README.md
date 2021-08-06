@@ -2,7 +2,7 @@
 title: Retrosphare collector 
 date: 2021-01-03
 tags: [collector, python.d]
-social_image: '/media/retrosphare.png'
+social_image: '/media/retroshare.png'
 description: A collector that monitors application bandwidth, peers and DHT metrics.  
 ---
 

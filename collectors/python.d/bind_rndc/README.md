@@ -2,7 +2,7 @@
 title: rndc collector 
 date: 2021-01-03
 tags: [collector, python.d]
-social_image: '/media/rndc.jpg'
+social_image: '/media/netdata-logomark.png'
 description: Collects name server summary performance statistics using the `rndc` tool
 ---
 

@@ -2,7 +2,7 @@
 title: nsd collector 
 date: 2021-01-03
 tags: [collector, python.d]
-social_image: '/media/nsd.jpg'
+social_image: '/media/netdata-logomark.png'
 description: A collector for NSD monitoring. 
 ---
 
