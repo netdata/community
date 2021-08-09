@@ -14,10 +14,10 @@ Displays a graph of the temperature and humidity from a AM2320 sensor.
  - Adafruit Circuit Python AM2320 library
  - Adafruit AM2320 I2C sensor
  - Python 3 (Adafruit libraries are not Python 2.x compatible)
- 
+
 
 It produces the following charts:
-1. **Temperature** 
+1. **Temperature**
 2. **Humidity**
 
 ## Configuration
@@ -53,4 +53,3 @@ Software install:
 - restart the netdata service.
 - check the dashboard.
 
-[![analytics](https://www.google-analytics.com/collect?v=1&aip=1&t=pageview&_s=1&ds=github&dr=https%3A%2F%2Fgithub.com%2Fnetdata%2Fnetdata&dl=https%3A%2F%2Fmy-netdata.io%2Fgithub%2Fcollectors%2Fpython.d.plugin%2Fam2320%2FREADME&_u=MAC~&cid=5792dfd7-8dc4-476b-af31-da2fdb9f93d2&tid=UA-64295674-3)]()
