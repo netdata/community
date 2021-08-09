@@ -1,4 +1,4 @@
-## Intro
+##  Community Alerts
 
 Netdata alerts are a critical piece of what makes Netdata so easy to use. It comes packaged with a large number of alerts about common use-cases, ready to be used with sane defaults. That makes Netdata to work out-of-the-box for most applications.
 
