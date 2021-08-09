@@ -1,3 +1,11 @@
+---
+title: Geth Alarms
+date: 2021-08-09
+tags: [go.d, alerts]
+social_image: '/media/netdata-logomark.png'
+description: Alerts for the Geth(Go-Ethereum) collector
+---
+
 # Geth Alerts
 
 A community-curated collection of alerts for the [Geth collector](https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/geth).
