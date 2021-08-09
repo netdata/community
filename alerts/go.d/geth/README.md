@@ -11,6 +11,10 @@ description: Alerts for the Geth(Go-Ethereum) collector
 A community-curated collection of alerts for the [Geth collector](https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/geth).
 
 
+### Chainhead header-block
+
+This alert checks the difference of the variables `chain_header_block`  `chain_head_header`. If the node is synced, they should be the same, thus the difference should be 0.
+
 ```
 #chainhead_header is expected momenterarily to be ahead. If its considerably ahead (e.g more than 5 blocks), then the node is definetely out of sync.
  template: geth_chainhead_diff_between_header_block

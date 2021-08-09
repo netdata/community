@@ -53,6 +53,15 @@ All alerts should be grouped by data source and be placed inside the `README.md`
 
 `/alerts/<plugin>/<data_source>/README.md
 
+Every `README.md` should have the following structure
+```
+## Data source title
+
+### Alert title
+<Description>
+<Alert definition>
+```
+
 For a list of data sources and plugins, you can visit the following page on our documentation: [How Netdata's metrics collectors work](https://learn.netdata.cloud/docs/collect/how-collectors-work).
 
 
