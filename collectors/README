@@ -1,5 +1,36 @@
-## Intro 
+## Intro
 
-## How to install a collector
+Community collectors are extensions for Netdata that have been contributed by community members. The extend Netdata by enabling it to monitor various data sources, from Tor to hardware sensors.
+
+As they are created and contributed by Community Members, Netdata does not maintain them. They are provided as-is and no support is provided. We can simply vouch that the collectors worked at the time of contribution.
+
+Note that as APIs change all the time, it is very possible that some collectors may not work as expected.
+
+Please do not use the community collectors in Production systems without testing them yourselves. We support users and companies to take "ownership" of community collectors that they found valuable and maintain them. By providing back the improvements that you make on the collectors,
+
+## How to install a collector WIP
+
 
 ## How to contribute a collector
+
+It's very easy to contribute a collector.
+
+1. First read the [Contributor's Handbook](https://learn.netdata.cloud/contribute/handbook).
+2. Follow the normal workflow, as outlined there, regarding collector contribution.
+3. Instead of doing the PR against the [netdata/netdata repository](https://github.com/netdata/netdata), make the contribution in the [netdata/community repository](https://github.com/netdata/community).
+4. Add the collector to the appropriate directory. The repository has the following structure: `/collectors/<collector_plugin>/<collector>/.
+
+### Why contribute a collector here?
+
+Community collecotrs are provided as-is, meaning that Netdata is not responsible for maintaining and supporting them. That means that the criteria for allowing a collector in this repository as much lower than those for allowing a collector to be added to the main repo.
+
+Since we support/maintain the collectors that come packaged with Netdata, we are very strict regarding the code quality and the nature of the collector. We can't take on supporting a collector about a more niche application, but the community can! Thus, the community is a perfect place to share the collectors that you have created for your specific use-case.
+
+The only criteria for allowing a collector here is for the collector to work properly!
+
+## Additional Resources
+
+- [How Netdata's metrics collectors work](https://learn.netdata.cloud/docs/collect/how-collectors-work)
+- [Develop a custom data collector in Python](https://learn.netdata.cloud/guides/python-collector)
+- [How to write a Netdata collector in Go](https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/docs/how-to-write-a-module)
+- [How to extend the Geth-Netdata integration](https://dev.to/netdata/how-to-extend-the-geth-netdata-integration-4o68)
