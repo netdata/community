@@ -218,17 +218,17 @@ class PickNSort {
     populate_list () {
         this.clear_list();
 
-        for (var i=0, len=this.items.length; i<len; i++) {
+        for (let i=0, len=this.items.length; i<len; i++) {
             this.draw_item(i);
         }
     }
 
     draw_item (index) {
-        var item = this.items[index];
+        const item = this.items[index];
 
-        var $item = $("<div></div>").addClass("picknsort-item");
+        const $item = $("<div></div>").addClass("picknsort-item");
 
-        var $checkbox= $("<div></div>").addClass('picknsort-item-checkbox-wrapper');
+        const $checkbox= $("<div></div>").addClass('picknsort-item-checkbox-wrapper');
 
         $("<input>", {
             type: "checkbox",
@@ -236,11 +236,11 @@ class PickNSort {
         }).addClass('picknsort-item-checkbox')
         .appendTo($checkbox);
 
-        var $value = $("<div></div>", {
+        const $value = $("<div></div>", {
             text: item.value
         }).addClass("picknsort-item-value");
 
-        var $nav = $("<div></div>").addClass("picknsort-item-nav")
+        const $nav = $("<div></div>").addClass("picknsort-item-nav")
         .append("<div class='picknsort-item-down' data-index='" + index + "' onclick='picknsort.shift_down(this)'>&#8595;</div>")
         .append("<div class='picknsort-item-up' data-index='" + index + "' onclick='picknsort.shift_up(this)'>&#8593;</div>");
 
@@ -272,14 +272,14 @@ class PickNSort {
     parse_items (enabled, disabled) {
         this.items = [];
 
-        for (var i=0, len=enabled.length; i<len; i++) {
+        for (let i=0, len=enabled.length; i<len; i++) {
             this.items.push({
                 value: enabled[i],
                 enabled: true
             });
         }
 
-        for (var i=0, len=disabled.length; i<len; i++) {
+        for (let i=0, len=disabled.length; i<len; i++) {
             this.items.push({
                 value: disabled[i],
                 enabled: false
@@ -288,30 +288,30 @@ class PickNSort {
     }
 
     shift_down (el) {
-        var index = $(el).data('index');
+        let index = $(el).data('index');
         if (index === this.items.length - 1) {
             return;
         }
-        var temp = this.items[index];
+        let temp = this.items[index];
         this.items[index] = this.items[index + 1];
         this.items[index + 1] = temp;
         this.move_element_down(index);
     }
 
     shift_up (el) {
-        var index = $(el).data('index');
+        let index = $(el).data('index');
         if (index === 0) {
             return;
         }
-        var temp = this.items[index];
+        let temp = this.items[index];
         this.items[index] = this.items[index - 1];
         this.items[index - 1] = temp;
         this.move_element_up(index);
     }
 
     move_element_up (index) {
-        var $src = $('.picknsort-item:eq(' + index + ')');
-        var $dest = $('.picknsort-item:eq(' + (index-1) + ')');
+        let $src = $('.picknsort-item:eq(' + index + ')');
+        let $dest = $('.picknsort-item:eq(' + (index-1) + ')');
         $src.insertBefore($dest);
 
         // Update data-index
@@ -320,8 +320,8 @@ class PickNSort {
     }
 
     move_element_down (index) {
-        var $src = $('.picknsort-item:eq(' + index + ')');
-        var $dest = $('.picknsort-item:eq(' + (index+1) + ')');
+        let $src = $('.picknsort-item:eq(' + index + ')');
+        let $dest = $('.picknsort-item:eq(' + (index+1) + ')');
         $src.insertAfter($dest);
 
         // Update data-index
@@ -330,16 +330,16 @@ class PickNSort {
     }
 
     apply () {
-        var out = [];
-        for (var i=0, len=this.items.length; i<len; i++) {
+        let out = [];
+        for (let i=0, len=this.items.length; i<len; i++) {
             out.push(this.items[i].value);
         }
-        var disabled = [];
+        let disabled = [];
         $('input.picknsort-item-checkbox:not(:checked)').each(function (elindex) {
-            var itemindex = $('input.picknsort-item-checkbox').index($(this));
+            let itemindex = $('input.picknsort-item-checkbox').index($(this));
             // Adjust for deleted elements
-            var spliceindex = itemindex - (1 * elindex);
-            var del = out.splice(spliceindex, 1);
+            let spliceindex = itemindex - (1 * elindex);
+            let del = out.splice(spliceindex, 1);
             disabled.push(del[0]);
         });
         this.callback(out, disabled);
@@ -354,20 +354,20 @@ class PickNSort {
         /*
         * You can change your PickNSort theme colors here. Not sure how well it will work...
         */
-        var light_theme = {
+        const light_theme = {
             windowbg: "#FFF",
             itembg: "#F4F4F4",
             itemcolor: "#535353"
         }
-        var dark_theme = {
+        const dark_theme = {
             windowbg: "#444",
             itembg: "#333",
             itemcolor: "#DBDBDB"
         }
 
-        var current_theme = (dark) ? dark_theme : light_theme;
+        let current_theme = (dark) ? dark_theme : light_theme;
 
-        var css_string = `
+        const css_string = `
 #picknsort-container {
     position: fixed;
     z-index: 9999 !important;
@@ -450,7 +450,7 @@ class PickNSort {
     padding: 0em 0.5em;
     height: calc(100% - 0.2em);
 }
-        ` // End multiline string
+` // End multiline string
 
 
         $("<style>")
@@ -461,10 +461,11 @@ class PickNSort {
 </script>
 <script type="application/javascript">
     // Dash JS
+    const ORDERED_HOSTS = 'netdata_ordered_hosts';
 
     function picknsort_setup () {
-        if (localStorage.getItem('netdata_ordered_hosts')) {
-            picknsort.last_output = JSON.parse(localStorage.getItem('netdata_ordered_hosts'));
+        if (localStorage.getItem(ORDERED_HOSTS)) {
+            picknsort.last_output = JSON.parse(localStorage.getItem(ORDERED_HOSTS));
         } else {
             picknsort.last_output = {
                 enabled: dash.netdata_info.mirrored_hosts,
@@ -499,12 +500,12 @@ class PickNSort {
         }
 
         init (callback) {
-            let that = this;
+            const that = this;
 
             this.setCssVariables();
 
             $.get(this.get_api_url() + '/info', function (data) {
-                that.netdata_info = data;
+                that.setup_netdata_info(data);
                 picknsort_setup();
                 that.build();
                 load_dashboard_js();
@@ -525,28 +526,39 @@ class PickNSort {
             }, ALARM_REFRESH_INTERVAL * 1000);
         }
 
-        reorder_hosts () {
-            picknsort.popup(dash.update_ordered_hosts, dash.find_new_hosts);
-        }
+        setup_netdata_info(data) {
+            const fromStorage = JSON.parse(localStorage.getItem(ORDERED_HOSTS));
+            this.netdata_info = data;
 
-        get_enabled_hosts () {
-            try {
-                return JSON.parse(localStorage.getItem('netdata_ordered_hosts')).enabled
-            } catch (e) {
-                return this.netdata_info.mirrored_hosts.sort();
+            if (fromStorage && fromStorage.enabled) {
+                const newHosts = this.get_new_hosts(data.mirrored_hosts);
+                if (newHosts.length > 0) {
+                    fromStorage.enabled.push(...newHosts);
+                    this.set_ordered_hosts(fromStorage);
+                }
             }
         }
 
+        reorder_hosts () {
+            picknsort.popup(dash.update_ordered_hosts, dash.reset_ordered_hosts);
+        }
+
+        get_enabled_hosts () {
+            const fromStorage = this.get_ordered_hosts().enabled;
+            return (fromStorage.length > 0) ? fromStorage : this.netdata_info.mirrored_hosts.sort();
+        }
+
         get_ordered_hosts () {
+            let defaultValue = {enabled: [], disabled: []};
             try {
-                return JSON.parse(localStorage.getItem('netdata_ordered_hosts'));
+                return JSON.parse(localStorage.getItem(ORDERED_HOSTS)) || defaultValue;
             } catch (e) {
-                return null;
+                return defaultValue;
             }
         }
 
         set_ordered_hosts (hosts) {
-            localStorage.setItem('netdata_ordered_hosts', JSON.stringify(hosts));
+            localStorage.setItem(ORDERED_HOSTS, JSON.stringify(hosts));
             location.reload();
         }
 
@@ -560,39 +572,18 @@ class PickNSort {
             });
         }
 
-        find_new_hosts () {
-            var newhosts = dash.netdata_info.mirrored_hosts.slice();
-            var currenthosts = dash.get_ordered_hosts();
+        reset_ordered_hosts () {
+            localStorage.removeItem(ORDERED_HOSTS);
+            location.reload();
+        }
 
-            for (var i=0,len=currenthosts.enabled.length; i<len; i++) {
-                var found = newhosts.indexOf(currenthosts.enabled[i]);
-
-                if (found > -1) {
-                    newhosts.splice(found, 1);
-                } else {
-                    currenthosts.enabled.splice(i, 1);
-                }
-            }
-
-            for (var i=0,len=currenthosts.disabled.length; i<len; i++) {
-                var found = newhosts.indexOf(currenthosts.disabled[i]);
-
-                if (found > -1) {
-                    newhosts.splice(found, 1);
-                } else {
-                    currenthosts.enabled.splice(i, 1);
-                }
-            }
-
-            for (var i=0,len=newhosts.length; i<len; i++) {
-                currenthosts.enabled.push(newhosts[i]);
-            }
-
-            dash.set_ordered_hosts(currenthosts);
+        get_new_hosts (newhosts) {
+            let currenthosts = dash.get_ordered_hosts();
+            return newhosts.filter(h => ![...currenthosts.enabled, ...currenthosts.disabled].includes(h));
         }
 
         get_host_url (hostname, link) {
-            var base = ( link ) ? this.link_base_url : this.base_url;
+            let base = ( link ) ? this.link_base_url : this.base_url;
             return (hostname) ? base + '/host/' + hostname : base;
         }
 
@@ -610,25 +601,26 @@ class PickNSort {
         }
 
         build () {
+            const that = this
             let $template = $('.netdata-host-stats-container').first();
-            let hosts = this.get_enabled_hosts();
+            let hosts = that.get_enabled_hosts();
 
             hosts.forEach(hostname => {
                 $('#alarms .alarm-host-list').append(`<div class="host-alarms ${hostname}"><a onclick="return dash.scroll_to_host_stats('${hostname}')" href="#${hostname}"><h2>${hostname}</h2></a></div>`);
 
                 $template.clone().removeClass('template').attr('id', hostname).appendTo('#dash');
                 let $newest = $('.netdata-host-stats-container').last();
-                this.build_stats($newest, hostname);
+                that.build_stats($newest, hostname);
             });
 
-            if (this.first_build === true) {
-                this.remove_template_elements();
-                this.first_build = false;
+            if (that.first_build === true) {
+                that.remove_template_elements();
+                that.first_build = false;
             }
         }
 
         build_stats ($hoststats, hostname) {
-            var that = this;
+            const that = this;
 
             $hoststats.find('.netdata-host-stats .dash-graph').each(function () {
                 that.build_graph($(this), hostname);
@@ -642,8 +634,8 @@ class PickNSort {
         }
 
         build_graph ($wrapper, hostname) {
-            var that = this;
-            var $graph = $('<div>', {
+            const that = this;
+            let $graph = $('<div>', {
                 // Defaults
                 'data-netdata': $wrapper.attr('data-dash-netdata'),
                 'data-host': that.get_host_url(hostname),
@@ -664,8 +656,8 @@ class PickNSort {
         }
 
         build_chart ($wrapper, hostname) {
-            var that = this;
-            var $graph = $('<div>', {
+            const that = this;
+            let $graph = $('<div>', {
                 // Defaults
                 'data-netdata': $wrapper.attr('data-dash-netdata'),
                 'data-host': that.get_host_url(hostname),
@@ -698,19 +690,10 @@ class PickNSort {
         }
 
         all_alarms_are_warnings () {
-            var out = true;
-            $.each(this.current_alarms, function (host, alarms) {
-                if (out === false) {
-                    return false; // Maximum efficiency
-                }
-                $.each(alarms, function (name, data) {
-                    if (data.status != "WARNING") {
-                        out = false;
-                        return false;
-                    }
-                });
-            });
-            return out;
+            let alarms = Object.values(this.current_alarms).reduce((a, b) => a.concat(b));
+            let notwarnings = alarms.filter(a => a.status !== "WARNING");
+
+            return notwarnings.length === 0;
         }
 
         update_alarm_count () {
@@ -719,7 +702,6 @@ class PickNSort {
             $('.alarm-count').removeClass('no-alarms warnings-only errors');
             if ( count === 0 ) {
                 $('.alarm-count').addClass('no-alarms');
-                return
             } else if (this.all_alarms_are_warnings()) {
                 $('.alarm-count').addClass('warnings-only');
             } else {
@@ -728,8 +710,7 @@ class PickNSort {
         }
 
         fetch_active_alarms () {
-            let that = this;
-            console.log("Getting alarms...");
+            const that = this;
             let hosts = this.get_enabled_hosts();
             hosts.forEach(hostname => {
                 $.get(this.get_api_url(hostname) + '/alarms', function (data) {
@@ -737,12 +718,12 @@ class PickNSort {
                     if ( Object.keys(that.new_alarms).length === hosts.length ) {
                         // All responses received
                         if ( that.check_new_current_alarms() ) {
-                            console.log("No alarm changes detected... Refreshing images.");
                             that.new_alarms = {};
                             that.refresh_alarm_images();
                             return;
                         }
 
+                        console.log("New alarms found...");
                         that.current_alarms = that.new_alarms;
                         that.new_alarms = {};
                         that.draw_alarms();
@@ -758,32 +739,27 @@ class PickNSort {
 
         check_new_current_alarms () {
             // Create arrays of property names
-            let a = this.current_alarms;
-            let b = this.new_alarms;
-            let aProps = Object.keys(a);
-            let bProps = Object.keys(b);
+            let current = this.current_alarms;
+            let incoming = this.new_alarms;
+            let currentHosts = Object.keys(this.current_alarms);
+            let incomingHosts = Object.keys(this.new_alarms);
 
-            // If number of properties is different,
+            // If number of hosts is different,
             // objects are not equivalent
-            if (aProps.length != bProps.length) {
+            if (currentHosts.length != incomingHosts.length) {
                 return false;
             }
 
-            for (var i = 0; i < aProps.length; i++) {
-                var propName = aProps[i];
-                var aa = a[propName];
-                var aaProps = Object.keys(aa);
-                var bb = b[propName];
-                var bbProps = Object.keys(bb);
+            // If the host's alarm arrays contain all the same keys, they match
+            for (let i = 0; i < currentHosts.length; i++) {
+                let host = currentHosts[i];
+                let currentAlarmKeys = Object.keys(current[host]);
+                let incomingAlarmKeys = Object.keys(incoming[host]);
 
-                if (aaProps.length != bbProps.length) {
+                let newAlarms = incomingAlarmKeys.filter(k => !currentAlarmKeys.includes(k));
+
+                if (newAlarms.length > 0) {
                     return false;
-                }
-
-                for (var n = 0, len=aaProps.length; i < len; i++) {
-                    if ( bb[aaProps[n]] === undefined ) {
-                        return false;
-                    }
                 }
             }
 
@@ -795,14 +771,14 @@ class PickNSort {
         refresh_alarm_images () {
             // Use Math.random() to "reload" the image
             $('.alarm-badge').each(function () {
-                var old_src = $(this).attr('src').replace(/&rand=.*/g, "");
+                let old_src = $(this).attr('src').replace(/&rand=.*/g, "");
                 $(this).attr('src', old_src + "&rand=" + Math.random());
             });
         }
 
         draw_alarms () {
-            var that = this;
-            console.log("Drawing...", that.current_alarms);
+            const that = this;
+            console.log("Drawing alarms...");
             $.each(that.current_alarms, function(hostname, alarms) {
                 $('#alarms .host-alarms.' + hostname + ' .alarm-badge').remove();
                 $.each(alarms, function (index, alarm) {
@@ -812,7 +788,7 @@ class PickNSort {
         }
 
         draw_alarm (hostname, alarm) {
-            var queryStr = '/badge.svg?alarm=' + alarm.name + '&chart=' + alarm.chart
+            let queryStr = `/badge.svg?alarm=${alarm.name}&chart=${alarm.chart}`
             $('<img />', {
                 src: this.get_api_url(hostname) + queryStr,
                 class: 'alarm-badge'
@@ -831,9 +807,9 @@ class PickNSort {
 
     if (typeof REVERSE_PROXY_URL === 'undefined') REVERSE_PROXY_URL = null;
 
-    var dash = new Dash(NETDATA_HOST, REVERSE_PROXY_URL);
+    const dash = new Dash(NETDATA_HOST, REVERSE_PROXY_URL);
 
-    var picknsort = new PickNSort(DARK_THEME);
+    const picknsort = new PickNSort(DARK_THEME);
 
     dash.init();
 
@@ -968,8 +944,8 @@ class PickNSort {
         height: 2.5em;
         text-align: center;
         position: absolute;
-        right: 0.6em;
-        top: 0.6em;
+        right: 0.75em;
+        top: 0.75em;
         background: #333;
         border-radius: 50%;
     }
