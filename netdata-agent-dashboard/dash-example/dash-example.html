@@ -33,6 +33,7 @@
         NETDATA_HOST = 'https://localhost:19999';
         // REVERSE_PROXY_URL = 'https://my-domain.com/stats'
 
+
         /**
          * Whether to use dark theme in PickNSort. Default is true
          */
@@ -270,21 +271,10 @@ class PickNSort {
     }
 
     parse_items (enabled, disabled) {
-        this.items = [];
+        const e = enabled.map(value => { return {value, enabled: true}});
+        const d = disabled.map(value => { return {value, enabled: false}});
 
-        for (let i=0, len=enabled.length; i<len; i++) {
-            this.items.push({
-                value: enabled[i],
-                enabled: true
-            });
-        }
-
-        for (let i=0, len=disabled.length; i<len; i++) {
-            this.items.push({
-                value: disabled[i],
-                enabled: false
-            });
-        }
+        this.items = [...e, ...d];
     }
 
     shift_down (el) {
@@ -602,7 +592,7 @@ class PickNSort {
 
         build () {
             const that = this
-            let $template = $('.netdata-host-stats-container').first();
+            let $template = $('.netdata-host-stats-container.template').first();
             let hosts = that.get_enabled_hosts();
 
             hosts.forEach(hostname => {
@@ -613,10 +603,7 @@ class PickNSort {
                 that.build_stats($newest, hostname);
             });
 
-            if (that.first_build === true) {
-                that.remove_template_elements();
-                that.first_build = false;
-            }
+            $template.remove();
         }
 
         build_stats ($hoststats, hostname) {
@@ -690,7 +677,7 @@ class PickNSort {
         }
 
         all_alarms_are_warnings () {
-            let alarms = Object.values(this.current_alarms).reduce((a, b) => a.concat(b));
+            let alarms = Object.values(this.current_alarms).flat();
             let notwarnings = alarms.filter(a => a.status !== "WARNING");
 
             return notwarnings.length === 0;
@@ -793,10 +780,6 @@ class PickNSort {
                 src: this.get_api_url(hostname) + queryStr,
                 class: 'alarm-badge'
             }).appendTo($('#alarms .host-alarms.' + hostname));
-        }
-
-        remove_template_elements () {
-            $('.netdata-host-stats-container').first().remove();
         }
 
         fix_layout_errors () {
@@ -945,7 +928,7 @@ class PickNSort {
         text-align: center;
         position: absolute;
         right: 0.75em;
-        top: 0.75em;
+        top: 0.5em;
         background: #333;
         border-radius: 50%;
     }
