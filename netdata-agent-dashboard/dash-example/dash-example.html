@@ -34,7 +34,6 @@
         NETDATA_HOST = 'https://localhost:19999';
         // REVERSE_PROXY_URL = 'https://my-domain.com/stats'
 
-
         /**
          * Whether to use dark theme in PickNSort. Default is true
          */
@@ -243,8 +242,8 @@ class PickNSort {
         }).addClass("picknsort-item-value");
 
         const $nav = $("<div></div>").addClass("picknsort-item-nav")
-        .append("<div class='picknsort-item-down' data-index='" + index + "' onclick='picknsort.shift_down(this)'>&#8595;</div>")
-        .append("<div class='picknsort-item-up' data-index='" + index + "' onclick='picknsort.shift_up(this)'>&#8593;</div>");
+        .append(`<div class="picknsort-item-down" data-index="${index}" onclick="picknsort.shift_down(this)">&#8595;</div>`)
+        .append(`<div class="picknsort-item-up" data-index="${index}" onclick="picknsort.shift_up(this)">&#8593;</div>`);
 
         $item.append($checkbox).append($value).append($nav).appendTo('#picknsort-item-list');
     }
@@ -264,7 +263,7 @@ class PickNSort {
         }
 
         this.parse_items(options.enabled, options.disabled);
-        if (this.items.length) {
+        if (this.items.length > 0) {
             this.create_modal();
             this.populate_list();
         }
@@ -301,8 +300,8 @@ class PickNSort {
     }
 
     move_element_up (index) {
-        let $src = $('.picknsort-item:eq(' + index + ')');
-        let $dest = $('.picknsort-item:eq(' + (index-1) + ')');
+        let $src = $(`.picknsort-item:eq(${index})`);
+        let $dest = $(`.picknsort-item:eq(${index-1})`);
         $src.insertBefore($dest);
 
         // Update data-index
@@ -311,8 +310,8 @@ class PickNSort {
     }
 
     move_element_down (index) {
-        let $src = $('.picknsort-item:eq(' + index + ')');
-        let $dest = $('.picknsort-item:eq(' + (index+1) + ')');
+        let $src = $(`.picknsort-item:eq(${index})`);
+        let $dest = $(`.picknsort-item:eq(${index+1})`);
         $src.insertAfter($dest);
 
         // Update data-index
@@ -359,94 +358,95 @@ class PickNSort {
         let current_theme = (dark) ? dark_theme : light_theme;
 
         const css_string = `
-#picknsort-container {
-    position: fixed;
-    z-index: 9999 !important;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.5);
-}
-#picknsort-window {
-    max-height: 90vh;
-    width: 40em;
-    background: ${current_theme.windowbg};
-    position: absolute;
-    top: 5em;
-    left: calc(50% - 20em);
-    padding: 2em;
-    padding-top: 4em;
-}
-#picknsort-close-button {
-    position: absolute;
-    top: 1em;
-    font-size: 1.5em;
-    color: #666;
-    right: 1em;
-    cursor: pointer;
-}
-#picknsort-item-list {
-    max-height: 60vh;
-    overflow-y: scroll;
-    margin-bottom: 1em;
-}
-#picknsort-apply-button, #picknsort-reset-button {
-    text-align: center;
-    font-size: 1.5em;
-    padding: 1em;
-    background: rgb(106, 232, 165);
-    font-weight: bold;
-    color: #FFF;
-    cursor: pointer;
-    margin-top: 1em;
-}
-#picknsort-reset-button {
-    background: #CCC;
-}
-.picknsort-item {
-    padding: 1em;
-    border-top: solid 1px #CCC;
-    margin-bottom: 1em;
-    position: relative;
-    background: ${current_theme.itembg};
-    color: ${current_theme.itemcolor}
-}
-.picknsort-item-checkbox-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 3em;
-    text-align: center;
-}
-.picknsort-item-checkbox {
-    transform: scale(1.5);
-    margin-top: 1.3em !important;
-}
-.picknsort-item-value {
-    margin-left: 3em;
-}
-.picknsort-item-nav {
-    font-size: 2em;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    color: #CCC;
-    cursor: pointer;
-}
-.picknsort-item-down, .picknsort-item-up {
-    display: inline-block;
-    padding: 0em 0.5em;
-    height: calc(100% - 0.2em);
-}
-` // End multiline string
+            #picknsort-container {
+                position: fixed;
+                z-index: 9999 !important;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0,0,0,0.5);
+            }
+            #picknsort-window {
+                max-height: 90vh;
+                width: 40em;
+                background: ${current_theme.windowbg};
+                position: absolute;
+                top: 5em;
+                left: calc(50% - 20em);
+                padding: 2em;
+                padding-top: 4em;
+            }
+            #picknsort-close-button {
+                position: absolute;
+                top: 1em;
+                font-size: 1.5em;
+                color: #666;
+                right: 1em;
+                cursor: pointer;
+            }
+            #picknsort-item-list {
+                max-height: 60vh;
+                overflow-y: scroll;
+                margin-bottom: 1em;
+            }
+            #picknsort-apply-button, #picknsort-reset-button {
+                text-align: center;
+                font-size: 1.5em;
+                padding: 1em;
+                background: rgb(106, 232, 165);
+                font-weight: bold;
+                color: #FFF;
+                cursor: pointer;
+                margin-top: 1em;
+            }
+            #picknsort-reset-button {
+                background: #CCC;
+            }
+            .picknsort-item {
+                padding: 1em;
+                border-top: solid 1px #CCC;
+                margin-bottom: 1em;
+                position: relative;
+                background: ${current_theme.itembg};
+                color: ${current_theme.itemcolor}
+            }
+            .picknsort-item-checkbox-wrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 3em;
+                text-align: center;
+            }
+            .picknsort-item-checkbox {
+                transform: scale(1.5);
+                margin-top: 1.3em !important;
+            }
+            .picknsort-item-value {
+                margin-left: 3em;
+            }
+            .picknsort-item-nav {
+                font-size: 2em;
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                color: #CCC;
+                cursor: pointer;
+            }
+            .picknsort-item-down, .picknsort-item-up {
+                display: inline-block;
+                padding: 0em 0.5em;
+                height: calc(100% - 0.2em);
+            }
+        ` // End multiline string
 
 
         $("<style>")
             .prop("type", "text/css")
-            .html(css_string).appendTo("head");
+            .html(css_string)
+            .appendTo("head");
     }
 }
 </script>
