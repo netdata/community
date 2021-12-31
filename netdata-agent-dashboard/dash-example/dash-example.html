@@ -745,8 +745,9 @@ class PickNSort {
                 let incomingAlarmKeys = Object.keys(incoming[host]);
 
                 let newAlarms = incomingAlarmKeys.filter(k => !currentAlarmKeys.includes(k));
+                let clearedAlarms = currentAlarmKeys.filter(k => !incomingAlarmKeys.includes(k));
 
-                if (newAlarms.length > 0) {
+                if (newAlarms.length > 0 || clearedAlarms.length > 0) {
                     return false;
                 }
             }
