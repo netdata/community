@@ -2,9 +2,13 @@
 
 `dash-example.html` is a single file, all-in-one page that automatically fetches graphs from all your hosts. Just add your graphs and charts (or use the defaults) one time using the `dash-*` syntax, and your selections will be automatically replicated for all of your hosts; showing alarms and graphs for all your hosts on **one page!**
 
-__**Dash will only work if you have implemented netdata streaming using `stream.conf`. It is not part of Netdata Cloud.**__
+For example, below shows a parent node called "devml-master" with multiple children streaming to it ("devml", "devml1", "devml2" etc.).
 
-`dash-example.html` was created as an experiment to demonstrate the capabilities of netdata in a multi-host environment. If you desire more features, submit a pull request or check out Netdata Cloud!
+![alt text](https://user-images.githubusercontent.com/2178292/147828981-8a471305-efc0-4ad3-ad01-d2b7a02491b3.png)
+
+__**Dash will only work if you have implemented [netdata streaming](https://learn.netdata.cloud/docs/agent/streaming) using `stream.conf`. It is not part of Netdata Cloud.**__
+
+`dash-example.html` was created as an experiment to demonstrate the capabilities of netdata in a multi-host environment. If you desire more features, submit a pull request or check out [Netdata Cloud!](https://www.netdata.cloud/cloud/)
 
 ## Configure Dash
 
@@ -14,6 +18,10 @@ cp /tmp/dash-example.html /usr/share/netdata/web/dash.html
 ```
 
 > NOTE: Ensure the owner/permissions match those in the rest of the files in the directory. For the netdata web directory, this is usually `netdata:netdata` and `0644`. Typically a command like this should do it `sudo chown -R netdata:netdata /usr/share/netdata/web/`
+
+Once this is done you should be able to see the new custom dashboard on your parent host at `https://localhost:19999/dash.html` (restart netdata using `sudo systemctl restart netdata` if needed).
+
+> NOTE: Depending on your parent configuration, uou may need to use the actual ip address of the parent instead of `localhost` in the `dash.html` file.
 
 Find and change the following lines in your new `dash.html` to reflect your Netdata URLs. The `REVERSE_PROXY_URL` is optional and only used if you access your Netdata dashboard through a reverse proxy. If it is not set, it defaults to the `NETDATA_HOST` URL.
 
