@@ -13,7 +13,7 @@ First, copy the `dash-example.html` file to a location in your netdata web direc
 cp /tmp/dash-example.html /usr/share/netdata/web/dash.html
 ```
 
-> NOTE: Ensure the owner/permissions match those in the rest of the files in the directory. For the netdata web directory, this is usually `netdata:netdata` and `0644`.
+> NOTE: Ensure the owner/permissions match those in the rest of the files in the directory. For the netdata web directory, this is usually `netdata:netdata` and `0644`. Typically a command like this should do it `sudo chown -R netdata:netdata /usr/share/netdata/web/`
 
 Find and change the following lines in your new `dash.html` to reflect your Netdata URLs. The `REVERSE_PROXY_URL` is optional and only used if you access your Netdata dashboard through a reverse proxy. If it is not set, it defaults to the `NETDATA_HOST` URL.
 
