@@ -10,16 +10,37 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <style type="text/css">
-    :root {
+    /* Dark Theme (default) */
+    :root,
+    :root[theme='dark'] {
         --text-color: #AAA;
         --text-color-contrast: #646464;
+        --text-color-alarm-count: #AAA;
         --chart-text-color: #FFF;
+        --chart-stroke-color: #373B40;
         --graph-text-color: #FFF;
-        --main-background: #272b30;
+        --main-background: #272B30;
         --host-background: #232323;
+        --sidebar-text-color: #AAA;
         --sidebar-background: #111;
         --sidebar-host-background: #1D1D1D;
         --sidebar-button-hover: #424242;
+    }
+
+    /* Light Theme */
+    :root[theme='light'] {
+        --text-color: #333;
+        --text-color-contrast: #646464;
+        --text-color-alarm-count: #EEE;
+        --chart-text-color: #35414A;
+        --chart-stroke-color: #F0F0F0;
+        --graph-text-color: #35414A;
+        --main-background: #E3E3E3;
+        --host-background: #FFF;
+        --sidebar-text-color: #333;
+        --sidebar-background: #ECEEEF;
+        --sidebar-host-background: #FFF;
+        --sidebar-button-hover: #B5B5B5;
     }
 </style>
 <body>
@@ -35,9 +56,9 @@
         // REVERSE_PROXY_URL = 'https://my-domain.com/stats'
 
         /**
-         * Whether to use dark theme in PickNSort. Default is true
+         * Choose dark or light theme, or add your own above. Default is dark.
          */
-        DARK_THEME = true;
+        THEME = 'dark';
 
         /**
          * How often alarms are refreshed in seconds
@@ -121,8 +142,7 @@
                         data-title="CPU"
                         data-units="%"
                         data-gauge-max-value="100"
-                        data-colors="#22AA99"
-                        data-gauge-stroke-color="#373B40">
+                        data-colors="#22AA99">
                     </div>
                     <div class="dash-chart"
                         data-dash-netdata="system.net"
@@ -495,6 +515,9 @@ class PickNSort {
 
             this.setCssVariables();
 
+            // Set theme on the root element
+            $('html').attr('theme', THEME);
+
             $.get(this.get_api_url() + '/info', function (data) {
                 that.setup_netdata_info(data);
                 picknsort_setup();
@@ -583,12 +606,18 @@ class PickNSort {
         }
 
         setCssVariables() {
-            let r = document.querySelector(':root');
-
             // Set CSS variables
-            r.style.setProperty('--graph-width', this.options.graph_width);
-            r.style.setProperty('--graph-height', this.options.graph_height);
-            r.style.setProperty('--chart-width', this.options.chart_width);
+            this.setCssVariable('--graph-width', this.options.graph_width);
+            this.setCssVariable('--graph-height', this.options.graph_height);
+            this.setCssVariable('--chart-width', this.options.chart_width);
+        }
+
+        getCssVariable(name) {
+            return getComputedStyle(document.documentElement).getPropertyValue(name);
+        }
+
+        setCssVariable(name, value) {
+            document.querySelector(':root').style.setProperty(name, value);
         }
 
         build () {
@@ -645,6 +674,8 @@ class PickNSort {
 
         build_chart ($wrapper, hostname) {
             const that = this;
+            const strokeColor = that.getCssVariable('--chart-stroke-color');
+            console.log(strokeColor);
             let $graph = $('<div>', {
                 // Defaults
                 'data-netdata': $wrapper.attr('data-dash-netdata'),
@@ -655,7 +686,8 @@ class PickNSort {
                 'role': 'application',
                 'data-width': that.options.chart_width,
                 'data-title': ' ',
-                'data-easypiechart-trackcolor': "#373B40",
+                'data-easypiechart-trackcolor': strokeColor,
+                'data-gauge-stroke-color': strokeColor,
                 'data-chart-library': 'easypiechart'
 
             })
@@ -794,7 +826,7 @@ class PickNSort {
 
     const dash = new Dash(NETDATA_HOST, REVERSE_PROXY_URL);
 
-    const picknsort = new PickNSort(DARK_THEME);
+    const picknsort = new PickNSort((THEME === 'dark'));
 
     dash.init();
 
@@ -837,7 +869,7 @@ class PickNSort {
         background-color: var(--sidebar-background);
         width: 23em;
         padding: 1em;
-        color: var(--text-color);
+        color: var(--sidebar-text-color);
         box-shadow: 0 0 3em black;
         border-left: solid 1px #2d2d2d;
         visibility: hidden;
@@ -923,6 +955,7 @@ class PickNSort {
 
     #alarms .alarm-count {
         display: flex;
+        color: var(--text-color-alarm-count);
         flex-direction: column;
         justify-content: center;
         width: 2.5em;
@@ -992,6 +1025,11 @@ class PickNSort {
 
     .netdata-host-stats-container:last-of-type {
         margin-right: 27em;
+    }
+
+    .netdata-message.icon {
+        /* The loading indicator for graphs and charts */
+        color: var(--text-color-contrast);
     }
 
     .dash-graph {
