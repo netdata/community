@@ -178,7 +178,11 @@
 class PickNSort {
     // PickNSort.js
 
-    constructor (dark) {
+    // Set the THEME variable to a value (or pass a value to the constructor), then create/modify a theme below
+    // By default, the 'light' theme is used
+
+    constructor (theme) {
+        this.theme = theme || THEME || 'light';
         this.items = [];
         this.callback = function (output, disabled) { console.log(output, disabled) };
         this.reset = function () { this.items = [] };
@@ -186,34 +190,50 @@ class PickNSort {
             enabled: [],
             disabled: []
         }
+        this.css_themes = `
+            #picknsort-container,
+            #picknsort-container[theme='light'] {
+                --window-background: #FFF;
+                --item-background: #F4F4F4;
+                --item-color: #535353;
+            }
+            #picknsort-container[theme='dark'] {
+                --window-background: #444;
+                --item-background: #333;
+                --item-color: #DBDBDB;
+            }
+        ` // End multiline string
 
-        this.add_css_to_page(dark);
+        this.add_css_to_page();
     }
 
     create_modal () {
-        $("<div></div>", {
-            id: "picknsort-container"
+        const div = "<div></div>";
+
+        $(div, {
+            id: "picknsort-container",
+            theme: this.theme 
         }).appendTo('body');
 
-        $("<div></div>", {
+        $(div, {
             id: 'picknsort-window'
         }).appendTo('#picknsort-container');
 
-        $("<div></div>", {
+        $(div, {
             id: "picknsort-close-button",
             text: '\u2573'
         }).appendTo('#picknsort-window');
 
-        $("<div></div>", {
+        $(div, {
             id: "picknsort-item-list"
         }).appendTo('#picknsort-window')
 
-        $("<div></div>", {
+        $(div, {
             text: "Apply",
             id: "picknsort-apply-button"
         }).appendTo('#picknsort-window');
 
-        $("<div></div>", {
+        $(div, {
             text: "Reset",
             id: "picknsort-reset-button"
         }).appendTo('#picknsort-window');
@@ -245,11 +265,12 @@ class PickNSort {
     }
 
     draw_item (index) {
+        const div = "<div></div>";
         const item = this.items[index];
 
-        const $item = $("<div></div>").addClass("picknsort-item");
+        const $item = $(div).addClass("picknsort-item");
 
-        const $checkbox= $("<div></div>").addClass('picknsort-item-checkbox-wrapper');
+        const $checkbox= $(div).addClass('picknsort-item-checkbox-wrapper');
 
         $("<input>", {
             type: "checkbox",
@@ -257,11 +278,11 @@ class PickNSort {
         }).addClass('picknsort-item-checkbox')
         .appendTo($checkbox);
 
-        const $value = $("<div></div>", {
+        const $value = $(div, {
             text: item.value
         }).addClass("picknsort-item-value");
 
-        const $nav = $("<div></div>").addClass("picknsort-item-nav")
+        const $nav = $(div).addClass("picknsort-item-nav")
         .append(`<div class="picknsort-item-down" data-index="${index}" onclick="picknsort.shift_down(this)">&#8595;</div>`)
         .append(`<div class="picknsort-item-up" data-index="${index}" onclick="picknsort.shift_up(this)">&#8593;</div>`);
 
@@ -360,24 +381,9 @@ class PickNSort {
         this.destroy_modal();
     }
 
-    add_css_to_page (dark) {
-        /*
-        * You can change your PickNSort theme colors here. Not sure how well it will work...
-        */
-        const light_theme = {
-            windowbg: "#FFF",
-            itembg: "#F4F4F4",
-            itemcolor: "#535353"
-        }
-        const dark_theme = {
-            windowbg: "#444",
-            itembg: "#333",
-            itemcolor: "#DBDBDB"
-        }
-
-        let current_theme = (dark) ? dark_theme : light_theme;
-
+    add_css_to_page () {
         const css_string = `
+            ${this.css_themes}
             #picknsort-container {
                 position: fixed;
                 z-index: 9999 !important;
@@ -390,7 +396,7 @@ class PickNSort {
             #picknsort-window {
                 max-height: 90vh;
                 width: 40em;
-                background: ${current_theme.windowbg};
+                background: var(--window-background);
                 position: absolute;
                 top: 5em;
                 left: calc(50% - 20em);
@@ -428,8 +434,8 @@ class PickNSort {
                 border-top: solid 1px #CCC;
                 margin-bottom: 1em;
                 position: relative;
-                background: ${current_theme.itembg};
-                color: ${current_theme.itemcolor}
+                background: var(--item-background);
+                color: var(--item-color);
             }
             .picknsort-item-checkbox-wrapper {
                 position: absolute;
@@ -826,7 +832,7 @@ class PickNSort {
 
     const dash = new Dash(NETDATA_HOST, REVERSE_PROXY_URL);
 
-    const picknsort = new PickNSort((THEME === 'dark'));
+    const picknsort = new PickNSort();
 
     dash.init();
 
