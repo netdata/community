@@ -47,26 +47,21 @@ When the playbook finishes, you'll see your nodes appear in Netdata Cloud!
 
 ## Configuration
 
-If you want to further configure your Netdata Agents, you can edit the existing values in `vars/main.yml`, or create new
-ones. If you create new values, you should then also edit `templates/netdata.conf.j2` to add them to the configuration
-file that is copied to each node. See the [daemon configuration
-doc](https://learn.netdata.cloud/docs/agent/daemon/config) for details about each setting.
+If you want to further configure your Netdata Agents, you can edit the existing values in `vars/main.yml`.
+You should match you config keys under `config` to the netdata configuration sections mentioned [here](https://learn.netdata.cloud/docs/agent/daemon/config)
+
+Plugins require `enabled: yes` to be created and configured.
+
+Each entry should have a `data` key which include the configuration in the Netdata key = value format.
 
 For example, if you want to increase metrics retention, increase `dbengine_multihost_disk_space` and run the playbook
 again.
 
-You could also create entirely new templates with this method. For example, if you want to control the
-`health_alarm_notify.conf` script with this playbook, create a new file called `templates/health_alarm_notify.conf` and
-add the settings you want to control. Add relevant variables to `vars/main.yml`, then create a new template task in
-`tasks/configure.yml`:
+```
+config:
+  global:
+    data: |-
 
-```yml
-  - template:
-      src: ../templates/health_alarm_notify.conf.j2
-      dest: /etc/netdata/health_alarm_notify.conf
-      owner: root
-      group: root
-      mode: u=wrx,g=rx,o=r,+x
-    notify: Restart Netdata
-    become: true
+      dbengine_multihost_disk_space = 2048
+
 ```

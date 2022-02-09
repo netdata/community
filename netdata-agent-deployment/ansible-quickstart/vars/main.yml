@@ -16,14 +16,43 @@ claim_url: https://app.netdata.cloud
 # https://learn.netdata.cloud/docs/agent/claim#remove-and-reclaim-a-node
 reclaim: false
 
-# Set Netdata's metrics retention policy via the disk size for the database
-# engine. Value is in MiB. Read more:
-# https://learn.netdata.cloud/docs/store/change-metrics-storage
-dbengine_multihost_disk_space: 2048
+config:
+  global:
+    data: |-
+      run as user = netdata
+      {% if hostvars[inventory_hostname].hostname %}
+      hostname = {{ hostvars[inventory_hostname].hostname }}
+      {% else %}
+      hostname = ansible.netdata.cloud
+      {% endif %}
 
-# Set whether to run the Agent web server/dashboard/API, or disable them.
-# Because we're connecting this node to Netdata Cloud and will view dashboards
-# there, we'll set this to `none` to disable the local dashboard. Set to
-# `static-threaded` if you want to keep it running. Read more:
-# https://learn.netdata.cloud/docs/configure/secure-nodes
-web_mode: none
+      history = 172956
+      process nice level = 0
+
+      # Set Netdata's metrics retention policy via the disk size for the database
+      # engine. Value is in MiB. Read more:
+      # https://learn.netdata.cloud/docs/store/change-metrics-storage
+      dbengine_multihost_disk_space = 2048
+  web:
+    data: |-
+      web files owner = root
+      web files group = netdata
+      disconnect idle clients after seconds = 3600
+      bind to = localhost
+      # Set whether to run the Agent web server/dashboard/API, or disable them.
+      # Because we're connecting this node to Netdata Cloud and will view dashboards
+      # there, we'll set this to `none` to disable the local dashboard. Set to
+      # `static-threaded` if you want to keep it running. Read more:
+      # https://learn.netdata.cloud/docs/configure/secure-nodes
+      mode = none
+  plugins:
+    ioping:
+      enabled: yes
+      data: |-
+        update every = 1
+    cgroups:
+      enabled: yes
+      data: |-
+        cgroups plugin resource charts = yes
+        update every = 1
+        check for new cgroups every = 10

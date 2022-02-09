@@ -3,8 +3,7 @@
   hosts: all
   vars_files:
     - "../vars/main.yml"
-  become: true
-  become_method: sudo
+  tags: config
 
   tasks:
   - template:
@@ -14,7 +13,7 @@
       group: root
       mode: u=wrx,g=rx,o=r,+x
     notify: Restart Netdata
-    become: true
+    tags: config
   
   handlers:
   - name: Restart Netdata

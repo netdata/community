@@ -1,10 +1,19 @@
-# Netdata configuration
+{%- for section in config if 'plugins' not in section  %}[{{section}}]
+{{ config[section].data|indent(4, true) }}
+{% endfor -%}
 
-[global]
-  {% if hostvars[inventory_hostname].hostname %}
-  hostname = {{ hostvars[inventory_hostname].hostname }}
-  {% endif %}
-  dbengine multihost disk space = {{ dbengine_multihost_disk_space }}
+{% if config.plugins is defined %}
+{% set plugins_section = [] %}
+{%- for plugin in config.plugins %}
+{% if config.plugins[plugin].enabled %}
+{% set key = plugins_section.append(plugin) %}
+[plugin:{{plugin}}]
+{{ config.plugins[plugin].data|indent(4, true) }}
+{% endif %}
+{% endfor -%}
 
-[web]
-	mode = {{ web_mode }}
+[plugins]
+{% for plugin in plugins_section %}
+{{ plugin|indent(4, true) }} = yes
+{% endfor -%}
+{% endif %}

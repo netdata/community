@@ -3,8 +3,6 @@
   hosts: all
   vars_files:
     - "../vars/main.yml"
-  become: true
-  become_method: sudo
 
   tasks:
   - name: Download the installation script
@@ -12,11 +10,14 @@
       url: https://my-netdata.io/kickstart.sh
       dest: ~/kickstart.sh
       mode: +x
+    tags: install
 
   - name: Install Netdata
     command: ~/kickstart.sh --dont-wait
+    tags: install
 
   - name: Cleanup installation script
     file:
       path: ~/kickstart.sh
       state: absent
+    tags: install

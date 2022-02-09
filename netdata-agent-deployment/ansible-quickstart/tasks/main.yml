@@ -2,7 +2,10 @@
 # Tasks file for Netdata
 
 - import_playbook: install.yml
+  tags: install
 
 - import_playbook: configure.yml
+  tags: config
 
 - import_playbook: claim.yml
+  tags: claim

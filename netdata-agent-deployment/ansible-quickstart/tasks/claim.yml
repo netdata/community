@@ -3,8 +3,7 @@
   hosts: all
   vars_files:
     - "../vars/main.yml"
-  become: true
-  become_method: sudo
+
 
   tasks:
   - name: Claim to Netdata Cloud
@@ -19,7 +18,6 @@
     - name: Claim to Netdata Cloud
       shell: netdata-claim.sh -token={{ claim_token }} -rooms={{ claim_rooms }} -url={{ claim_url }}
       when: claimed_result.stat.exists == false
-      become: yes
     when: reclaim == false
 
   - name: Re-claim a node to Netdata Cloud
@@ -39,11 +37,12 @@
       shell: netdata-claim.sh -token={{ claim_token }} -rooms={{ claim_rooms }} -url={{ claim_url }} -id=$(uuidgen)
       when: uuidgen_result.stat.exists == true
       notify: Restart Netdata
-      become: yes
     when: reclaim == true
+    tags: claim
 
   handlers:
   - name: Restart Netdata
     service:
       name: netdata
       state: restarted
+  tags: claim
