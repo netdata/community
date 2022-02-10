@@ -47,11 +47,11 @@ config:
       mode = none
   plugins:
     ioping:
-      enabled: yes
+      enabled: no
       data: |-
         update every = 1
     cgroups:
-      enabled: yes
+      enabled: no
       data: |-
         cgroups plugin resource charts = yes
         update every = 1
