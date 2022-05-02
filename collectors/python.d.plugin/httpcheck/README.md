@@ -1,9 +1,3 @@
-<!--
-title: "HTTP endpoint monitoring with Netdata"
-custom_edit_url: https://github.com/netdata/netdata/edit/master/collectors/python.d.plugin/httpcheck/README.md
-sidebar_label: "HTTP endpoints"
--->
-
 # HTTP endpoint monitoring with Netdata
 
 Monitors remote http server for availability and response time.
