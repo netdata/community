@@ -44,7 +44,7 @@ jobs:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-devenv
       - name: Docker Build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           file: devenv/Dockerfile
           context: devenv
