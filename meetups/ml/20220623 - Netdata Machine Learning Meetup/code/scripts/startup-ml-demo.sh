@@ -10,7 +10,7 @@ echo "NETDATA_CLOUD_ROOMS=${NETDATA_CLOUD_ROOMS}"
 # run this first
 ${RUN_THIS_FIRST}
 
-# create someuser user
+# create someuser user, used for cron jobs below to put some continual CPU load on all the machines.
 sudo adduser someuser
 
 # set editor
@@ -193,7 +193,7 @@ EOT
 
 fi
 
-# enable alarms collector
+# enable alarms collector so we can visualize the ml alarms values over time.
 
 echo "setting up python collectors"
     # create stream.conf file
@@ -216,7 +216,7 @@ ml:
   alarm_contains_words: 'ml_1min'
 EOT
 
-# configure ml based alerts
+# configure ml based alerts, this is just experimental for now to see how useful they may or may not be.
 
 echo "configure ml based alarms"
     # create /health.d/ml.conf file
