@@ -29,6 +29,10 @@ ADD https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer
 
 RUN chmod +x /install-required-packages.sh && \
     /install-required-packages.sh netdata-all --non-interactive --dont-wait && \
+    apt-get install -y --no-install-recommends libprotobuf-c-dev \
+                                               libprotobuf-dev \
+                                               protobuf-c-compiler \
+                                               protobuf-compiler && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 COPY ./bash_aliases /root/.bash_aliases
