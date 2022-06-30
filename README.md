@@ -1,6 +1,6 @@
 # Netdata Community
 
-Welcome to the community-curated repository of Netdata. 
+Welcome to the community-curated repository of Netdata.
 
 Name of the game is simple, aggregate sample-applications that super-charge the Netdata experience and can serve as boilerplate or examples.
 
@@ -10,6 +10,7 @@ Name of the game is simple, aggregate sample-applications that super-charge the 
 - Netdata Agent API
     -  [netdata-pandas](/netdata-agent-api/netdata-pandas/)
 - Netdata Agent Deployment
+  - [ansible-xsrv](/netdata-agent-deployment/ansible-xsrv/)
   - [ansible-quickstart](/netdata-agent-deployment/ansible-quickstart/)
 - [Developer Environment](/devenv)
 
@@ -28,7 +29,7 @@ Each `<category>` and `<sample_app>` **must** have a README.md.
 
 # Contributing
 
-- Make sure you take a look at the [Contributing Handbook](https://learn.netdata.cloud/contribute/handbook). It covers the whole range of contributinons for the Netdata ecosystem. We reference the guidelines about contributions, as also tips for specific areas (e.g docs). 
+- Make sure you take a look at the [Contributing Handbook](https://learn.netdata.cloud/contribute/handbook). It covers the whole range of contributions for the Netdata ecosystem. We reference the guidelines about contributions, as also tips for specific areas (e.g docs).
 - If you need any help or feedback, create a topic on our [Community Forums](https://community.netdata.cloud/c/agent-development/9). We have a whole category just for developing and improving Netdata, so the community would to hear from you.
 - For the Community repository speicifically, here are a couple of ideas:
     - Improve an existing Sample-App in code or documentation
@@ -55,7 +56,7 @@ Each `<category>` and `<sample_app>` **must** have a README.md.
 
 # License
 
-MIT License 
+MIT License
 
 # Code of Conduct
 
