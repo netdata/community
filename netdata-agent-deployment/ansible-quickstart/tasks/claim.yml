@@ -10,16 +10,12 @@
   - name: Claim to Netdata Cloud
     block: 
 
-    - name: Check if node is already claimed
-      # This check is used to prevent errors in the following task to claim the node to Netdata Cloud.
-      stat:
-        path: /var/lib/netdata/cloud.d/claimed_id
-      register: claimed_result
-
-    - name: Claim to Netdata Cloud
-      shell: netdata-claim.sh -token={{ claim_token }} -rooms={{ claim_rooms }} -url={{ claim_url }}
-      when: claimed_result.stat.exists == false
+    - name: Claim to Netdata Cloud if not already
+      shell:
+        cmd: netdata-claim.sh -token={{ claim_token }} -rooms={{ claim_rooms }} -url={{ claim_url }}
+        creates: /var/lib/netdata/cloud.d/claimed_id
       become: yes
+      
     when: reclaim == false
 
   - name: Re-claim a node to Netdata Cloud
