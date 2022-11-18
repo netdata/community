@@ -286,7 +286,7 @@ class Service(UrlService):
                 continue
             name, val = line.split("\t")[0:2]
             fullname = _fullname(category, name)
-            out[fullname] = int(val)
+            out[fullname] = int(float(val))
 
         return out
 
