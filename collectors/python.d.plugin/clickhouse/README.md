@@ -1,6 +1,6 @@
-**Note**: Copied from here: https://github.com/FedericoCeratto/netdata/tree/plugin-clickhouse/collectors/python.d.plugin/clickhouse
+**Note**: Copied from here with love and appreciation: https://github.com/FedericoCeratto/netdata/tree/plugin-clickhouse/collectors/python.d.plugin/clickhouse
 
-# clickhouse
+# ClickHouse
 
 This module monitors the ClickHouse database server.
 
@@ -12,7 +12,7 @@ It produces metrics based of the following queries:
 **Requirements:**
 ClickHouse allowing access without username and password.
 
-## installation
+## Installation
 
 ```bash
 # download python script
