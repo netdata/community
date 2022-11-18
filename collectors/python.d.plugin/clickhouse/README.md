@@ -16,10 +16,10 @@ ClickHouse allowing access without username and password.
 
 ```bash
 # download python script
-sudo wget https://raw.githubusercontent.com/FedericoCeratto/netdata/plugin-clickhouse/collectors/python.d.plugin/clickhouse/clickhouse.chart.py -O /usr/libexec/netdata/python.d/clickhouse.chart.py
+sudo wget https://raw.githubusercontent.com/netdata/community/main/collectors/python.d.plugin/clickhouse/clickhouse.chart.py -O /usr/libexec/netdata/python.d/clickhouse.chart.py
 
-# download default conf
-sudo wget https://raw.githubusercontent.com/FedericoCeratto/netdata/plugin-clickhouse/collectors/python.d.plugin/clickhouse/clickhouse.conf -O /etc/netdata/python.d/clickhouse.conf
+# optional - download default conf (optional - only needed if you want to change default config)
+sudo wget https://raw.githubusercontent.com/netdata/community/main/collectors/python.d.plugin/clickhouse/clickhouse.conf -O /etc/netdata/python.d/clickhouse.conf
 
 # go to netdata dir
 cd /etc/netdata
@@ -27,9 +27,18 @@ cd /etc/netdata
 # enable collector by adding line a new line with "clickhouse: yes"
 sudo ./edit-config python.d.conf
 
+# optional - edit clickhouse.conf
+sudo vi /etc/netdata/python.d/clickhouse.conf
+
 # restart netdata
 sudo systemctl restart netdata
+```
 
+### Run in debug mode
+
+If you need to run in debug mode.
+
+```bash
 # become user netdata
 sudo su -s /bin/bash netdata
 
