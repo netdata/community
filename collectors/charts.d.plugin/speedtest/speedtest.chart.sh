@@ -18,10 +18,6 @@ speedtest_update_every=120
 # 1 = the first chart
 speedtest_priority=150000
 
-# to enable this chart, you have to set this to 12345
-# (just a demonstration for something that needs to be checked)
-speedtest_magic_number=
-
 # global variables to store our collected data
 # remember: they need to start with the module name speedtest_
 speedtest_download=0   
@@ -35,8 +31,6 @@ speedtest_idle_jitter=0
 speedtest_download_jitter=0
 speedtest_upload_jitter=0
 speedtest_packetloss=0
-speedtest_last=0
-speedtest_count=0
 
 speedtest_get() {
   # do all the work to collect / calculate the values
@@ -50,17 +44,17 @@ speedtest_get() {
 
   output=$(speedtest --format=csv)
   
-  speedtest_download=$(echo $output | awk -F, '{print $6}' | tr -d '"')
-  speedtest_upload=$(echo $output | awk -F, '{print $7}' | tr -d '"')
-  speedtest_download_bytes=$(echo $output | awk -F, '{print $8}' | tr -d '"')
-  speedtest_upload_bytes=$(echo $output | awk -F, '{print $9}' | tr -d '"')
-  speedtest_idle_latency=$(echo $output | awk -F, '{print $3}' | tr -d '"')
-  speedtest_download_latency=$(echo $output | awk -F, '{print $12}' | tr -d '"')
-  speedtest_upload_latency=$(echo $output | awk -F, '{print $16}' | tr -d '"')
-  speedtest_idle_jitter=$(echo $output | awk -F, '{print $4}' | tr -d '"')
-  speedtest_download_jitter=$(echo $output | awk -F, '{print $13}' | tr -d '"')
-  speedtest_upload_jitter=$(echo $output | awk -F, '{print $17}' | tr -d '"')
-  speedtest_packetloss=$(echo $output | awk -F, '{print $5}' | tr -d '"')
+  speedtest_download=$(echo "$output" | awk -F, '{print $6}' | tr -d '"')
+  speedtest_upload=$(echo "$output" | awk -F, '{print $7}' | tr -d '"')
+  speedtest_download_bytes=$(echo "$output" | awk -F, '{print $8}' | tr -d '"')
+  speedtest_upload_bytes=$(echo "$output" | awk -F, '{print $9}' | tr -d '"')
+  speedtest_idle_latency=$(echo "$output" | awk -F, '{print $3}' | tr -d '"')
+  speedtest_download_latency=$(echo "$output" | awk -F, '{print $12}' | tr -d '"')
+  speedtest_upload_latency=$(echo "$output" | awk -F, '{print $16}' | tr -d '"')
+  speedtest_idle_jitter=$(echo "$output" | awk -F, '{print $4}' | tr -d '"')
+  speedtest_download_jitter=$(echo "$output" | awk -F, '{print $13}' | tr -d '"')
+  speedtest_upload_jitter=$(echo "$output" | awk -F, '{print $17}' | tr -d '"')
+  speedtest_packetloss=$(echo "$output" | awk -F, '{print $5}' | tr -d '"')
   # this should return:
   #  - 0 to send the data to netdata
   #  - 1 to report a failure to collect the data
