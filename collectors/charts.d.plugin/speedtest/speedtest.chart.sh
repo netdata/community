@@ -79,27 +79,27 @@ speedtest_check() {
 # _create is called once, to create the charts
 speedtest_create() {
   cat << EOF
-CHART speedtest.download '' 'Download Bandwidth' 'bps' 'bandwidth' 'speedtest.download' area $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.download '' 'Download Bandwidth' 'bps' 'bandwidth' 'speedtest.download' area $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.download '' absolute 1 1
-CHART speedtest.upload '' 'Upload Bandwidth' 'bps' 'bandwidth' 'speedtest.upload' area $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.upload '' 'Upload Bandwidth' 'bps' 'bandwidth' 'speedtest.upload' area $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.upload '' absolute 1 1
-CHART speedtest.packetloss '' 'Packet Loss' 'packet loss %' 'packet loss' 'speedtest.packetloss' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.packetloss '' 'Packet Loss' 'packet loss %' 'packet loss' 'speedtest.packetloss' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.packetloss '' percentage-of-absolute-row 1 1
-CHART speedtest.idle_latency '' 'Idle Latency' 'milliseconds' 'latency' 'speedtest.idle_latency' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.idle_latency '' 'Idle Latency' 'milliseconds' 'latency' 'speedtest.idle_latency' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.idle_latency '' absolute 1 1
-CHART speedtest.download_latency '' 'Download Latency' 'milliseconds' 'latency' 'speedtest.download_latency' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.download_latency '' 'Download Latency' 'milliseconds' 'latency' 'speedtest.download_latency' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.download_latency '' absolute 1 1
-CHART speedtest.upload_latency '' 'Upload Latency' 'milliseconds' 'latency' 'speedtest.upload_latency' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.upload_latency '' 'Upload Latency' 'milliseconds' 'latency' 'speedtest.upload_latency' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.upload_latency '' absolute 1 1
-CHART speedtest.idle_jitter '' 'Idle Jitter' 'milliseconds' 'jitter' 'speedtest.idle_jitter' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.idle_jitter '' 'Idle Jitter' 'milliseconds' 'jitter' 'speedtest.idle_jitter' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.idle_jitter '' absolute 1 1
-CHART speedtest.download_jitter '' 'Download Jitter' 'milliseconds' 'jitter' 'speedtest.download_jitter' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.download_jitter '' 'Download Jitter' 'milliseconds' 'jitter' 'speedtest.download_jitter' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.download_jitter '' absolute 1 1
-CHART speedtest.upload_jitter '' 'Upload Jitter' 'milliseconds' 'jitter' 'speedtest.upload_jitter' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.upload_jitter '' 'Upload Jitter' 'milliseconds' 'jitter' 'speedtest.upload_jitter' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.upload_jitter '' absolute 1 1
-CHART speedtest.download_bytes '' 'Bytes downloaded' 'bytes' 'bandwidth' 'speedtest.download_bytes' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.download_bytes '' 'Bytes downloaded' 'bytes' 'bandwidth' 'speedtest.download_bytes' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.download_bytes '' absolute 1 1
-CHART speedtest.upload_bytes '' 'Bytes uploaded' 'bytes' 'bandwidth' 'speedtest.upload_bytes' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+CHART speedtest.upload_bytes '' 'Bytes uploaded' 'bytes' 'bandwidth' 'speedtest.upload_bytes' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
 DIMENSION speedtest.upload_bytes '' absolute 1 1
 EOF
 
