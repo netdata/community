@@ -9,6 +9,11 @@
 
 NETDATA_DIR="/etc/netdata"
 
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root."
+  exit
+fi
+
 if [ ! -d $NETDATA_DIR ]; then
     printf "\nPlease update NETDATA_DIR in %s with the Netdata user configuration directory as mentioned in https://learn.netdata.cloud/docs/agent/collectors/plugins.d#environment-variables\n" "$0"
     exit 1
