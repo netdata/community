@@ -72,5 +72,5 @@ should give you clues as to why the collector isn't working.
 - Run the `charts.d.plugin` to debug the collector:
 
   ```bash
-  ./charts.d.plugin 
+  ./charts.d.plugin speedtest
   ```
