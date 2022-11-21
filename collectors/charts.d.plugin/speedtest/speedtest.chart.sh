@@ -20,7 +20,7 @@ speedtest_priority=150000
 
 # global variables to store our collected data
 # remember: they need to start with the module name speedtest_
-speedtest_download=0   
+speedtest_download=0
 speedtest_upload=0
 speedtest_download_bytes=0
 speedtest_upload_bytes=0
@@ -43,9 +43,9 @@ speedtest_get() {
   # 4. USE LOCAL VARIABLES (global variables may overlap with other modules)
 
   output=$(speedtest --format=csv)
-  
-  speedtest_download=$(echo "$output" | awk -F, '{print $6}' | tr -d '"')
-  speedtest_upload=$(echo "$output" | awk -F, '{print $7}' | tr -d '"')
+
+  speedtest_download=$(($(echo "$output" | awk -F, '{print $6}' | tr -d '"')*8/1024))
+  speedtest_upload=$(($(echo "$output" | awk -F, '{print $7}' | tr -d '"')*8/1024))
   speedtest_download_bytes=$(echo "$output" | awk -F, '{print $8}' | tr -d '"')
   speedtest_upload_bytes=$(echo "$output" | awk -F, '{print $9}' | tr -d '"')
   speedtest_idle_latency=$(echo "$output" | awk -F, '{print $3}' | tr -d '"')
@@ -69,7 +69,7 @@ speedtest_check() {
   #  - 1 to disable the chart
 
   # check something
-  
+
   # check that we can collect data
   speedtest_get || return 1
 
@@ -79,27 +79,27 @@ speedtest_check() {
 # _create is called once, to create the charts
 speedtest_create() {
   cat << EOF
-CHART speedtest.download '' 'Download Bandwidth' 'bps' 'bandwidth' 'speedtest.download' area $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
-DIMENSION speedtest.download '' absolute 1 1
-CHART speedtest.upload '' 'Upload Bandwidth' 'bps' 'bandwidth' 'speedtest.upload' area $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
-DIMENSION speedtest.upload '' absolute 1 1
-CHART speedtest.packetloss '' 'Packet Loss' 'packet loss %' 'packet loss' 'speedtest.packetloss' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
-DIMENSION speedtest.packetloss '' percentage-of-absolute-row 1 1
-CHART speedtest.idle_latency '' 'Idle Latency' 'milliseconds' 'latency' 'speedtest.idle_latency' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
+CHART speedtest.download_speed '' 'Download Bandwidth' 'kilobits/s' 'speed' 'speedtest.download' area $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+DIMENSION speedtest.download_speed '' absolute 1 1
+CHART speedtest.upload_speed '' 'Upload Bandwidth' 'kilobits/s' 'speed' 'speedtest.upload' area $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+DIMENSION speedtest.upload_speed '' absolute 1 1
+CHART speedtest.packet_loss '' 'Packet Loss' 'packet loss %' 'loss' 'speedtest.packetloss' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
+DIMENSION speedtest.packet_loss '' percentage-of-absolute-row 1 1
+CHART speedtest.idle_latency '' 'Idle Latency' 'milliseconds' 'latency' 'speedtest.idle_latency' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
 DIMENSION speedtest.idle_latency '' absolute 1 1
-CHART speedtest.download_latency '' 'Download Latency' 'milliseconds' 'latency' 'speedtest.download_latency' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
+CHART speedtest.download_latency '' 'Download Latency' 'milliseconds' 'latency' 'speedtest.download_latency' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
 DIMENSION speedtest.download_latency '' absolute 1 1
-CHART speedtest.upload_latency '' 'Upload Latency' 'milliseconds' 'latency' 'speedtest.upload_latency' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
+CHART speedtest.upload_latency '' 'Upload Latency' 'milliseconds' 'latency' 'speedtest.upload_latency' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
 DIMENSION speedtest.upload_latency '' absolute 1 1
-CHART speedtest.idle_jitter '' 'Idle Jitter' 'milliseconds' 'jitter' 'speedtest.idle_jitter' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
+CHART speedtest.idle_jitter '' 'Idle Jitter' 'milliseconds' 'jitter' 'speedtest.idle_jitter' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
 DIMENSION speedtest.idle_jitter '' absolute 1 1
-CHART speedtest.download_jitter '' 'Download Jitter' 'milliseconds' 'jitter' 'speedtest.download_jitter' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
+CHART speedtest.download_jitter '' 'Download Jitter' 'milliseconds' 'jitter' 'speedtest.download_jitter' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
 DIMENSION speedtest.download_jitter '' absolute 1 1
-CHART speedtest.upload_jitter '' 'Upload Jitter' 'milliseconds' 'jitter' 'speedtest.upload_jitter' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
+CHART speedtest.upload_jitter '' 'Upload Jitter' 'milliseconds' 'jitter' 'speedtest.upload_jitter' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
 DIMENSION speedtest.upload_jitter '' absolute 1 1
-CHART speedtest.download_bytes '' 'Bytes downloaded' 'bytes' 'bandwidth' 'speedtest.download_bytes' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
+CHART speedtest.download_bytes '' 'Bytes downloaded' 'bytes' 'bytes transmitted' 'speedtest.download_bytes' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
 DIMENSION speedtest.download_bytes '' absolute 1 1
-CHART speedtest.upload_bytes '' 'Bytes uploaded' 'bytes' 'bandwidth' 'speedtest.upload_bytes' line $((speedtest_priority)) $speedtest_update_every '' 'charts.d.plugin' 'speedtest'
+CHART speedtest.upload_bytes '' 'Bytes uploaded' 'bytes' 'bytes transmitted' 'speedtest.upload_bytes' line $((speedtest_priority)) $speedtest_update_every '' '' 'speedtest'
 DIMENSION speedtest.upload_bytes '' absolute 1 1
 EOF
 
@@ -115,14 +115,14 @@ speedtest_update() {
 
   # write the result of the work.
   cat << VALUESEOF
-BEGIN speedtest.download $1
-SET speedtest.download = $speedtest_download
+BEGIN speedtest.download_speed $1
+SET speedtest.download_speed = $speedtest_download
 END
-BEGIN speedtest.upload $1
-SET speedtest.upload = $speedtest_upload
+BEGIN speedtest.upload_speed $1
+SET speedtest.upload_speed = $speedtest_upload
 END
-BEGIN speedtest.packetloss $1
-SET speedtest.packetloss = $speedtest_packetloss
+BEGIN speedtest.packet_loss $1
+SET speedtest.packet_loss = $speedtest_packetloss
 END
 BEGIN speedtest.idle_latency $1
 SET speedtest.idle_latency = $speedtest_idle_latency
