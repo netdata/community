@@ -26,8 +26,8 @@ All metrics have "speedtest." prefix.
 
 | Metric              |    Scope    |  Dimensions   |     Units     |
 |---------------------|:-----------:|:-------------:|:-------------:|
-| download_speed      |   global    |  download     |  bps          |
-| upload_speed        |   global    |  upload       |  bps          |
+| download_speed      |   global    |  download     |  kilobits/s   |
+| upload_speed        |   global    |  upload       |  kilobits/    |
 | packet_loss         |   global    |  loss         |  packets      |
 | idle_latency        |   global    |  latency      |  milliseconds |
 | download_latency    |   global    |  latency      |  milliseconds |
