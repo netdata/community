@@ -28,7 +28,7 @@ All metrics have "speedtest." prefix.
 |---------------------|:-----------:|:-------------:|:-------------:|
 | download            |   global    |  bandwidth    |  bps          |
 | upload              |   global    |  bandwidth    |  bps          |
-| packetloss          |   global    |  packet loss  |  packets      |
+| packet_loss          |   global    |  loss  |  packets      |
 | idle_latency        |   global    |  latency      |  milliseconds |
 | download_latency    |   global    |  latency      |  milliseconds |
 | upload_latency      |   global    |  latency      |  milliseconds |
