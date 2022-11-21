@@ -49,11 +49,11 @@ sudo ./edit-config charts.d/speedtest.conf
 ```
 
 For all available options please see
-module [configuration file](https://github.com/netdata/go.d.plugin/blob/master/config/go.d/cassandra.conf).
+module [configuration file](https://github.com/netdata/community/blob/main/collectors/charts.d.plugin/speedtest.conf).
 
 ## Troubleshooting
 
-To troubleshoot issues with the `cassandra` collector, run the `go.d.plugin` with the debug option enabled. The output
+To troubleshoot issues with the `speedtest` collector, run the `charts.d.plugin` with the debug option enabled. The output
 should give you clues as to why the collector isn't working.
 
 - Navigate to the `plugins.d` directory, usually at `/usr/libexec/netdata/plugins.d/`. If that's not the case on
