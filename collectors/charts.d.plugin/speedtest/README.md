@@ -14,7 +14,7 @@ This module monitors results and metrics related to [Speedtest](https://www.spee
 
 For all nodes you are going to monitor speedtest results from:
 - Install Speedtest CLI by following the installation instructions mentioned [here](https://www.speedtest.net/apps/cli).
-- Accept the license agreement as the Netdata by running `speedtest` from the command line
+- Accept the license agreement as the Netdata user by running `speedtest` from the command line:
 
 ```bash
 sudo -u netdata speedtest
