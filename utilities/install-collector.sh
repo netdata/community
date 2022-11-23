@@ -9,13 +9,17 @@
 
 NETDATA_DIR="/etc/netdata"
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root."
-  exit 1
-fi
-
-if [ ! -d $NETDATA_DIR ]; then
-    printf "\nPlease update NETDATA_DIR in %s with the Netdata user configuration directory as mentioned in https://learn.netdata.cloud/docs/agent/collectors/plugins.d#environment-variables\n" "$0"
+if [ "$EUID" -ne 0 ]; then
+    printf "\nError: Please run as root.\n\n"
+    exit 1
+elif [ $# -eq 0 ]; then
+    printf "\nError: No arguments supplied. \n\nUsage: sudo %s <plugin/collector> (Eg: %s charts.d.plugin/speedtest)\n\nFor available collectors from the community see https://github.com/netdata/community/tree/main/collectors\n\n" "$0" "$0"
+    exit 1
+elif [ "$1" == "-h" ]; then
+    printf "\nUsage: sudo %s <plugin/collector> (Eg: %s charts.d.plugin/speedtest)\n\nFor available collectors from the community see https://github.com/netdata/community/tree/main/collectors\n\n" "$0" "$0"
+    exit 1
+elif [ ! -d $NETDATA_DIR ]; then
+    printf "\nError: Please update NETDATA_DIR in %s with the Netdata user configuration directory as mentioned in https://learn.netdata.cloud/docs/agent/collectors/plugins.d#environment-variables\n\n" "$0"
     exit 1
 fi
 
@@ -53,22 +57,33 @@ enabled="\"$collector: yes\""
 filecheck="$collector_conf/$collector.conf"
 
 if [ -f "$filecheck" ]; then
-  printf "\n\nA Netdata collector by this name already exists on this system. Exiting...\n\n"
-  exit 1
+    printf "\n\nA Netdata collector by this name already exists on this system. Exiting...\n\n"
+    exit 1
 fi
 
-if command -v curl > /dev/null 2>&1; then
-    cd "$executable" && { sudo curl -O "$charts" ; cd - || exit 1; }
-    cd "$collector_conf" && { sudo curl -O "$config" ; cd - || exit 1; }
-  elif command -v wget > /dev/null 2>&1; then
+if command -v wget > /dev/null 2>&1; then
     sudo wget "$charts" -P "$executable"
     sudo wget "$config" -P "$collector_conf"
-  else
-    echo >&2 "Downloading failed because neither curl nor wget are available on this system."
+elif command -v curl > /dev/null 2>&1; then
+    cd "$executable" && { sudo curl -O "$charts" ; cd - || exit 1; }
+    cd "$collector_conf" && { sudo curl -O "$config" ; cd - || exit 1; }
+else
+    printf "\n\nDownloading failed because neither curl nor wget are available on this system.\n\n"
     exit 1
-  fi
+fi
+
+if ! [ -f "$executable/$collector.chart$file_ext" ] && ! [ -f "$collector_conf/$collector.conf" ]; then
+    printf "\nDownloading failed. Please provide a valid input.\n\n"
+    exit 1
+fi
 
 sudo echo "$enabled" | tee -a "$conf"
+
+if ! command -v systemctl &> /dev/null
+then
+    printf "\nUnable to restart Netdata agent, please follow these instructions to restart manually: https://learn.netdata.cloud/docs/configure/start-stop-restart\n"
+    exit 1
+fi
 
 if systemctl is-active --quiet netdata; then
     sudo systemctl restart netdata
@@ -77,8 +92,12 @@ if systemctl is-active --quiet netdata; then
        exit 1
     fi
 else
-    printf "\nUnable to restart Netdata agent, please follow these instructions to restart manually: https://learn.netdata.cloud/docs/configure/start-stop-restart\n"
+    sudo service netdata restart
+    if ! sudo service netdata restart; then
+       printf "\nUnable to restart Netdata agent, please follow these instructions to restart manually: https://learn.netdata.cloud/docs/configure/start-stop-restart\n"
+       exit 1
+    fi
 fi
 
-printf "\nSuccessfully restarted Netdata agent"
+printf "\nSuccessfully restarted Netdata agent."
 printf "\n\nInstalled %s collector succesfully.\n\n" "$collector"
