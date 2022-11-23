@@ -57,8 +57,17 @@ if [ -f "$filecheck" ]; then
   exit 1
 fi
 
-sudo wget "$charts" -P "$executable"
-sudo wget "$config" -P "$collector_conf"
+if command -v curl > /dev/null 2>&1; then
+    cd "$executable" && { sudo curl -O "$charts" ; cd -; }
+    cd "$collector_conf" && { sudo curl -O "$config" ; cd -; }
+  elif command -v wget > /dev/null 2>&1; then
+    sudo wget "$charts" -P "$executable"
+    sudo wget "$config" -P "$collector_conf"
+  else
+    echo >&2 "Downloading failed because neither curl nor wget are available on this system."
+    exit 1
+  fi
+
 sudo echo "$enabled" | tee -a "$conf"
 
 if systemctl is-active --quiet netdata; then
