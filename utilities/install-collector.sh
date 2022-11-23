@@ -11,7 +11,7 @@ NETDATA_DIR="/etc/netdata"
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root."
-  exit
+  exit 1
 fi
 
 if [ ! -d $NETDATA_DIR ]; then
