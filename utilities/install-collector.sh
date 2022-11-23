@@ -58,8 +58,8 @@ if [ -f "$filecheck" ]; then
 fi
 
 if command -v curl > /dev/null 2>&1; then
-    cd "$executable" && { sudo curl -O "$charts" ; cd -; }
-    cd "$collector_conf" && { sudo curl -O "$config" ; cd -; }
+    cd "$executable" && { sudo curl -O "$charts" ; cd - || exit 1; }
+    cd "$collector_conf" && { sudo curl -O "$config" ; cd - || exit 1; }
   elif command -v wget > /dev/null 2>&1; then
     sudo wget "$charts" -P "$executable"
     sudo wget "$config" -P "$collector_conf"
