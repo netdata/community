@@ -20,6 +20,23 @@ For all nodes you are going to monitor speedtest results from:
 sudo -u netdata speedtest
 ```
 
+## Installation
+
+This is a community maintained collector and not available as part of the Netdata agent by default. To install this collector follow these steps:
+
+1. Download the [install-collector](https://github.com/netdata/community/blob/main/utilities/install-collector.sh) script to /etc/netdata (or wherever your netdata home happens to be)
+```bash
+wget https://github.com/netdata/community/blob/main/utilities/install-collector.sh
+```
+2. Give the script execute permission
+```bash
+chmod +x install-collector.sh
+```
+3. Run the script
+```bash
+sudo ./install-collector.sh charts.d.plugin/speedtest
+```
+
 ## Metrics
 
 All metrics have "speedtest." prefix.
