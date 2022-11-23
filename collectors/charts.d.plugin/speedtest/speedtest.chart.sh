@@ -44,8 +44,8 @@ speedtest_get() {
 
   output=$(speedtest --format=csv)
 
-  speedtest_download=$(($(echo "$output" | awk -F, '{print $6}' | tr -d '"')*8/1024))
-  speedtest_upload=$(($(echo "$output" | awk -F, '{print $7}' | tr -d '"')*8/1024))
+  speedtest_download=$(($(echo "$output" | awk -F, '{print $6}' | tr -d '"')*8/1000))
+  speedtest_upload=$(($(echo "$output" | awk -F, '{print $7}' | tr -d '"')*8/1000))
   speedtest_download_bytes=$(echo "$output" | awk -F, '{print $8}' | tr -d '"')
   speedtest_upload_bytes=$(echo "$output" | awk -F, '{print $9}' | tr -d '"')
   speedtest_idle_latency=$(echo "$output" | awk -F, '{print $3}' | tr -d '"')
