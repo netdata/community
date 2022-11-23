@@ -76,6 +76,8 @@ if systemctl is-active --quiet netdata; then
        printf "\nUnable to restart Netdata agent, please follow these instructions to restart manually: https://learn.netdata.cloud/docs/configure/start-stop-restart\n"
        exit 1
     fi
+else
+    printf "\nUnable to restart Netdata agent, please follow these instructions to restart manually: https://learn.netdata.cloud/docs/configure/start-stop-restart\n"
 fi
 
 printf "\nSuccessfully restarted Netdata agent"
