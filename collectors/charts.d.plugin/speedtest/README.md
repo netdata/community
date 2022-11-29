@@ -37,6 +37,18 @@ chmod +x install-collector.sh
 sudo ./install-collector.sh charts.d.plugin/speedtest
 ```
 
+Alternativley to install in non interactive mode you can run something like this: 
+
+```bash
+# install speedtest cli
+sudo curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+sudo apt-get install speedtest -y
+sudo -u netdata speedtest --accept-license
+
+# install speedtest collector
+sudo wget -O /tmp/install-collector.sh https://raw.githubusercontent.com/netdata/community/main/utilities/install-collector.sh && echo 'y' | sudo bash /tmp/install-collector.sh charts.d.plugin/speedtest
+```
+
 ## Metrics
 
 All metrics have "speedtest." prefix.
