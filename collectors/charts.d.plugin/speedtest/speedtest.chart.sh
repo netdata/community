@@ -11,7 +11,7 @@
 
 # _update_every is a special variable - it holds the number of seconds
 # between the calls of the _update() function
-speedtest_update_every=120
+speedtest_update_every=1800
 
 # the priority is used to sort the charts on the dashboard
 # 1 = the first chart
