@@ -10,6 +10,8 @@ sidebar_label: "Speedtest"
 
 This module monitors results and metrics related to [Speedtest](https://www.speedtest.net/apps/cli).
 
+> **Warning** Be very careful about setting low values of `update_every` when using this collector - by default it is `1800` which is one every 30 minutes. If you blindly set a very low value of `update_every` you will essentially be running continous speedtests that could severly impact your bandwidth and have related ingress/egress costs if using on a cloud VM for example. Read more [here](https://help.speedtest.net/hc/en-us/articles/360038679354-How-does-Speedtest-measure-my-network-speeds-) about how the test works.
+
 ## Requirements
 
 For all nodes you are going to monitor speedtest results from:
@@ -104,6 +106,3 @@ should give you clues as to why the collector isn't working.
   ./charts.d.plugin speedtest
   ```
   
-## Notes
-
-- Be very careful about setting low values of `update_every` when using this collector - by default it is `1800` which is one every 30 minutes. If you blindly set a very low value of `update_every` you will essentially be running continous speedtests that could severly impact your bandwidth and have related ingress/egress costs if using on a cloud VM for example. Read more [here](https://help.speedtest.net/hc/en-us/articles/360038679354-How-does-Speedtest-measure-my-network-speeds-) about how the test works.
