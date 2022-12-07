@@ -7,6 +7,10 @@
 
 # This script installs community maintained collectors from netdata/community github repo
 
+# example usage:
+# $ sudo wget -O /tmp/install-collector.sh https://raw.githubusercontent.com/netdata/community/main/utilities/install-collector.sh && sudo bash /tmp/install-collector.sh python.d.plugin/clickhouse
+
+
 NETDATA_DIR="/etc/netdata"
 
 if [ "$EUID" -ne 0 ]; then
