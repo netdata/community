@@ -8,6 +8,7 @@ Welcome to the community-curated repository of Netdata. Please feel free to subm
 - [/configuration-management](/configuration-management/) - Helpful resources around configuration management live in here.
 - [/devenv](/devenv/) - A development environment recipe.
 - [/meetups](/meetups/) - Resources and material relating to Netdata hosted meetups.
+- [/netdata-agent-dashboard](/netdata-agent-dashboard/) - Some examples of custom extensions of the local netdata agent dashboard.
 - [/netdata-pandas-examples](/netdata-pandas-examples/) - Some example Python notebooks using the [`netdata-pandas`](https://github.com/netdata/netdata-pandas) Python library.
 - [/utilities](/utilities/) - Some useful helper scripts.
 
