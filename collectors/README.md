@@ -34,3 +34,10 @@ $ sudo vi /etc/netdata/python.d/clickhouse.conf
 # see docs for more information: https://learn.netdata.cloud/docs/configure/start-stop-restart
 $ sudo systemctl restart netdata
 ```
+
+Alternatively you can use [this helper script](/utilities/install-collector.sh) to automate the above steps.
+
+```bash
+# download and install the clickhouse collector
+sudo wget -O /tmp/install-collector.sh https://raw.githubusercontent.com/netdata/community/main/utilities/install-collector.sh && sudo bash /tmp/install-collector.sh python.d.plugin/clickhouse
+```
