@@ -1,6 +1,8 @@
 # Utilities
 
-- `install-collector.sh` - A little helper script to install a third party or community collector from netdata/community.
+- [/airthings](./airthings/) - A Python script to wrangle some Airthings data.
+- [/load_creator](./load_creator/) - A script to create some load.
+- [`install-collector.sh`](./install-collector.sh) - A little helper script to install a third party or community collector from netdata/community.
   You can use it like this:
 
   ```bash
