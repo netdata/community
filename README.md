@@ -1,6 +1,6 @@
 # Netdata Community
 
-Welcome to the community-curated repository of Netdata.
+Welcome to the community-curated repository of Netdata. Please feel free to submit ideas and PR's of things you think others in the Netdata community might find useful!!!
 
 # Table of Contents
 
