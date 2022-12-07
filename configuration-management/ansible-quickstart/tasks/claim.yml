@@ -1,0 +1,45 @@
+---
+- name: Claim the node to Netdata Cloud
+  hosts: all
+  vars_files:
+    - "../vars/main.yml"
+  become: true
+  become_method: sudo
+
+  tasks:
+  - name: Claim to Netdata Cloud
+    block: 
+
+    - name: Claim to Netdata Cloud if not already
+      shell:
+        cmd: netdata-claim.sh -token={{ claim_token }} -rooms={{ claim_rooms }} -url={{ claim_url }}
+        creates: /var/lib/netdata/cloud.d/claimed_id
+      become: yes
+      
+    when: reclaim == false
+
+  - name: Re-claim a node to Netdata Cloud
+    block:
+
+    - name: Ensure `uuidgen` is installed
+      stat:
+        path: /usr/bin/uuidgen
+      register: uuidgen_result
+    
+    - name: Fail if `uuidgen` is not installed
+      fail:
+        msg: The system needs `uuidgen` installed to enable re-claiming.
+      when: uuidgen_result.stat.exists == false
+
+    - name: Reclaim the node with `-id=`
+      shell: netdata-claim.sh -token={{ claim_token }} -rooms={{ claim_rooms }} -url={{ claim_url }} -id=$(uuidgen)
+      when: uuidgen_result.stat.exists == true
+      notify: Restart Netdata
+      become: yes
+    when: reclaim == true
+
+  handlers:
+  - name: Restart Netdata
+    service:
+      name: netdata
+      state: restarted

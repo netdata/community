@@ -1,61 +1,38 @@
 # Netdata Community
 
-Welcome to the community-curated repository of Netdata. 
-
-Name of the game is simple, aggregate sample-applications that super-charge the Netdata experience and can serve as boilerplate or examples.
+Welcome to the community-curated repository of Netdata. Please feel free to submit ideas and PR's of things you think others in the Netdata community might find useful!!!
 
 # Table of Contents
-- Configuration Management
-    - [consul-quickstart](/configuration-management/consul-quickstart/)
-- Netdata Agent API
-    -  [netdata-pandas](/netdata-agent-api/netdata-pandas/)
-- Netdata Agent Deployment
-  - [ansible-quickstart](/netdata-agent-deployment/ansible-quickstart/)
-- [Developer Environment](/devenv)
 
-
-# Repository Structure
-
-The repository is currently structured as follows. Since this is a community-based repository, the structure can change based on feedback.
-
-`/<category>/<sample_app>`
-
-Each `<category>` and `<sample_app>` **must** have a README.md.
-
-- `/category/README.md`: This README offers a simple explanation of the category (e.g what is configuration management)
-- `/category/sample_app/README.md`: This README should offer instructions for the user on how to install, configure and use the `sample_app`.
-
+- [/collectors](/collectors/) - Community contributed and maintained collectors live in here.
+- [/configuration-management](/configuration-management/) - Helpful resources around configuration management live in here.
+- [/devenv](/devenv/) - A development environment recipe.
+- [/meetups](/meetups/) - Resources and material relating to Netdata hosted meetups.
+- [/netdata-agent-dashboard](/netdata-agent-dashboard/) - Some examples of custom extensions of the local netdata agent dashboard.
+- [/netdata-pandas-examples](/netdata-pandas-examples/) - Some examples Python notebooks using the [`netdata-pandas`](https://github.com/netdata/netdata-pandas) Python library.
+- [/utilities](/utilities/) - Some useful helper scripts.
 
 # Contributing
 
-- Make sure you take a look at the [Contributing Handbook](https://learn.netdata.cloud/contribute/handbook). It covers the whole range of contributinons for the Netdata ecosystem. We reference the guidelines about contributions, as also tips for specific areas (e.g docs). 
-- If you need any help or feedback, create a topic on our [Community Forums](https://community.netdata.cloud/c/agent-development/9). We have a whole category just for developing and improving Netdata, so the community would to hear from you.
-- For the Community repository speicifically, here are a couple of ideas:
+- Make sure you take a look at the [Contributing Handbook](https://learn.netdata.cloud/contribute/handbook). It covers the whole range of contributions for the Netdata ecosystem. We reference the guidelines about contributions, as also tips for specific areas (e.g docs).
+- If you need any help or feedback, create a topic on our [Community Forums](https://community.netdata.cloud/). We have a whole category just for developing and improving Netdata, so the community would to hear from you.
+- For the Community repository specifically, here are a couple of ideas:
     - Improve an existing Sample-App in code or documentation
     - Submit a new sample-app in an existing category
     - Submit a new sample app in a new category
 
 ## Workflow
+
 - Fork this repository
 - Clone the forked repository locally
-- Add your sample-application
+- Add your work
     - Add relevant documentation by creating a README.md
-    - Honour the existing directory structure: `<category>/<sub-category>/<sample-app>`
-- Push the changes to your fork, preferablly to a branch and not master.
+- Push the changes to your fork, preferably to a branch and not master.
 - PR the changes from your fork to this repository
-
-### Sample Categories
-- Configuration Management for Netdata Agent
-- Chaos Engineering visualization with Netdata Agent
-- Provisioning of a large number of Netdata Agents
-- Netdata Agent integration with a 3rd-party application
-    - By using Netdata Agent's API
-    - By creating a new Netdata Agent collector
-- ??
 
 # License
 
-MIT License 
+MIT License
 
 # Code of Conduct
 
