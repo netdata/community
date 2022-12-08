@@ -4,9 +4,9 @@
 
 For example, below shows a parent node called "devml-master" with multiple children streaming to it ("devml", "devml1", "devml2" etc.).
 
-![alt text](https://user-images.githubusercontent.com/2178292/147828981-8a471305-efc0-4ad3-ad01-d2b7a02491b3.png)
+![dash screenshot](https://user-images.githubusercontent.com/2178292/147828981-8a471305-efc0-4ad3-ad01-d2b7a02491b3.png)
 
-__**Dash will only work if you have implemented [netdata streaming](https://learn.netdata.cloud/docs/agent/streaming) using `stream.conf`. It is not part of Netdata Cloud.**__
+> IMPORTANT: Dash will only work if you have implemented [netdata streaming](https://learn.netdata.cloud/docs/agent/streaming) using `stream.conf`. It is not part of Netdata Cloud.
 
 `dash-example.html` was created as an experiment to demonstrate the capabilities of netdata in a multi-host environment. If you desire more features, submit a pull request or check out [Netdata Cloud!](https://www.netdata.cloud/cloud/)
 
@@ -17,19 +17,22 @@ First, copy the `dash-example.html` file to a location in your netdata web direc
 cp /tmp/dash-example.html /usr/share/netdata/web/dash.html
 ```
 
-> NOTE: Ensure the owner/permissions match those in the rest of the files in the directory. For the netdata web directory, this is usually `netdata:netdata` and `0644`. Typically a command like this should do it `sudo chown -R netdata:netdata /usr/share/netdata/web/`
+Ensure the owner/permissions match those in the rest of the files in the directory. For the netdata web directory, this is usually `netdata:netdata` and `0644`. So for example:
+```bash
+sudo chown netdata:netdata /usr/share/netdata/web/dash.html
+sudo chmod 644 /usr/share/netdata/web/dash.html
+```
 
-Once this is done you should be able to see the new custom dashboard on your parent host at `https://localhost:19999/dash.html` (restart netdata using `sudo systemctl restart netdata` if needed).
 
-> NOTE: Depending on your parent configuration, uou may need to use the actual ip address of the parent instead of `localhost` in the `dash.html` file.
 
-Find and change the following lines in your new `dash.html` to reflect your Netdata URLs. The `REVERSE_PROXY_URL` is optional and only used if you access your Netdata dashboard through a reverse proxy. If it is not set, it defaults to the `NETDATA_HOST` URL.
+Find and change the following lines in your new `dash.html` to reflect your Netdata URLs. The `REVERSE_PROXY_URL` is optional and only used if you access your Netdata dashboard through a reverse proxy. If it is not set, it defaults to the `NETDATA_HOST` URL, which should be set to the IP/FQDN of the parent instance.
 
 ```js
 /**
- * Netdata URLS. If you use a reverse proxy, add it and uncomment the line below
+ * Netdata URLS. If you use a reverse proxy, add it and uncomment the line below. 
+ * NETDATA_HOST should be the IP or FQDN for your parent netdata instance
  */
-NETDATA_HOST = 'https://localhost:19999';
+NETDATA_HOST = 'https://my.netdata.server:19999';
 // REVERSE_PROXY_URL = 'https://my-domain.com/stats'
 ```
 
@@ -46,7 +49,9 @@ DASH_OPTIONS = {
 }
 ```
 
-See the configuration section at the top of `dash.html` for more options.
+See the `CONFIGURATION` section at the top of `dash.html` for more options.
+
+Once this is done you should be able to see the new custom dashboard on your parent instance at `https://my.netdata.server:19999/dash.html` (restart netdata using `sudo systemctl restart netdata` if needed).
 
 To change the display order of your hosts, which is saved in localStorage, click the settings gear in the lower right corner
 
