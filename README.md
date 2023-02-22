@@ -36,4 +36,4 @@ MIT License
 
 # Code of Conduct
 
-This repository is part of the Netdata organization, thus the Netdata [Code of Conduct](https://learn.netdata.cloud/docs/nightly/miscellaneous/netdata-community-code-of-conduct) applies.
+This repository is part of the Netdata organization, thus the Netdata [Code of Conduct](https://github.com/netdata/.github/blob/main/CODE_OF_CONDUCT.md) applies.
