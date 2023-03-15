@@ -15,5 +15,5 @@ alias nconf="CFLAGS=\"${NETDATA_DEV_CFLAGS}\" ./configure \
         --with-math \
         --with-user=netdata \
         --disable-lto"
-alias netdata-install="CFLAGS='${NETDATA_DEV_CFLAGS}' ./netdata-installer.sh --install $NETDATA_INSTALL_PREFIX --dont-start-it --dont-wait --disable-lto"
+alias netdata-install="CFLAGS='${NETDATA_DEV_CFLAGS}' ./netdata-installer.sh --install-prefix $NETDATA_INSTALL_PREFIX --dont-start-it --dont-wait --disable-lto"
 alias netdata-build="nreconf && nconf && make"
