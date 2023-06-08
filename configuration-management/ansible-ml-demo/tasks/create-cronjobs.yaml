@@ -1,0 +1,20 @@
+---
+- name: create cronjobs
+  hosts: all
+  become: yes
+
+  tasks:
+
+    - name: create cronjob for steady usage
+      ansible.builtin.cron:
+        name: "{{ item }} steady usage"
+        minute: "*/3"
+        job: "stress-ng -c 0 -l 5 -t 200s"
+        user: "{{ item }}"
+      with_items:
+        - cpuhog
+        - memstealer
+        - networkguy
+        - iouser
+        - filestressor
+        - randombadguy

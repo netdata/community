@@ -2,6 +2,8 @@
 - name: configure ml demo room nodes
   hosts: all
 - import_playbook: ../tasks/ping.yaml
+- import_playbook: ../tasks/create-users.yaml
+- import_playbook: ../tasks/create-cronjobs.yaml
 - import_playbook: ../tasks/netdata-config-health-ml.yaml
 - import_playbook: ../tasks/netdata-config-netdata-conf.yaml
 - import_playbook: ../tasks/netdata-restart.yaml
