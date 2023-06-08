@@ -22,7 +22,9 @@ ansible beastvms -m ping -i inventory.yaml
 ```bash
 # run playbook
 ansible-playbook -i inventory.yaml playbooks/main.yaml
+```
 
+```bash
 # run playbook with become password
 ansible-playbook -i inventory.yaml playbooks/main.yaml --ask-become-pass
 ```
