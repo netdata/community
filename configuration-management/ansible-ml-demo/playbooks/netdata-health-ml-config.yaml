@@ -1,0 +1,19 @@
+---
+- name: Transfer netdata configuration file
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: Ensure netdata configuration directory exists
+      file:
+        path: /etc/netdata/health.d
+        state: directory
+
+    - name: Transfer ml.conf file to remote server
+      copy:
+        src: ../templates/ml.conf.j2
+        dest: /etc/netdata/health.d/ml.conf
+        owner: netdata
+        group: netdata
+        mode: '0644'

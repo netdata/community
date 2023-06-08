@@ -1,0 +1,208 @@
+
+# node ar 1min
+ template: ml_1min_node_ar
+       on: anomaly_detection.anomaly_rate
+    class: Anomaly
+     type: System
+component: Node
+   lookup: average -1m foreach anomaly_rate
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min node level anomaly rate
+
+# system.cpu chart
+ template: ml_1min_system_cpu
+       on: system.cpu
+    class: Anomaly
+     type: System
+component: CPU
+   lookup: average -1m anomaly-bit of *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for system.cpu chart
+
+# system.ram chart
+ template: ml_1min_system_ram
+       on: system.ram
+    class: Anomaly
+     type: System
+component: RAM
+   lookup: average -1m anomaly-bit of *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for system.ram chart
+
+# system.io chart
+ template: ml_1min_system_io
+       on: system.io
+    class: Anomaly
+     type: System
+component: IO
+   lookup: average -1m anomaly-bit of *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for system.io chart
+
+# system.net chart
+ template: ml_1min_system_net
+       on: system.net
+    class: Anomaly
+     type: System
+component: Net
+   lookup: average -1m anomaly-bit of *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for system.net chart
+
+# system.processes chart
+ template: ml_1min_system_processes
+       on: system.processes
+    class: Anomaly
+     type: System
+component: Processes
+   lookup: average -1m anomaly-bit of *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for system.processes chart
+
+# apps.cpu dims
+ template: ml_1min_apps_cpu_dim
+       on: apps.cpu
+    class: Anomaly
+     type: Apps
+component: CPU
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each apps.cpu dimension
+
+# apps.mem dims
+ template: ml_1min_apps_mem_dim
+       on: apps.mem
+    class: Anomaly
+     type: Apps
+component: Memory
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each apps.mem dimension
+
+# apps.threads dims
+ template: ml_1min_apps_threads_dim
+       on: apps.threads
+    class: Anomaly
+     type: Apps
+component: Threads
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each apps.threads dimension
+
+# apps.processes dims
+ template: ml_1min_apps_processes_dim
+       on: apps.processes
+    class: Anomaly
+     type: Apps
+component: Processes
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each apps.processes dimension
+
+# apps.sockets dims
+ template: ml_1min_apps_sockets_dim
+       on: apps.sockets
+    class: Anomaly
+     type: Apps
+component: Sockets
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each apps.sockets dimension
+
+# users.cpu dims
+ template: ml_1min_users_cpu_dim
+       on: users.cpu
+    class: Anomaly
+     type: Users
+component: CPU
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each users.cpu dimension
+
+# users.mem dims
+ template: ml_1min_users_mem_dim
+       on: users.mem
+    class: Anomaly
+     type: Users
+component: Memory
+   lookup: average -1m anomaly-bit foreach *
+   units: %
+   every: 30s
+    warn: $this > (($status >= $WARNING)  ? (1) : (5))
+    crit: $this > (($status == $CRITICAL) ? (5) : (100))
+    info: rolling 1min anomaly rate for each users.mem dimension
+
+# users.threads dims
+ template: ml_1min_users_threads_dim
+       on: users.threads
+    class: Anomaly
+     type: Users
+component: Threads
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each users.threads dimension
+
+# users.processes dims
+ template: ml_1min_users_processes_dim
+       on: users.processes
+    class: Anomaly
+     type: Users
+component: Processes
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each users.processes dimension
+
+# users.sockets dims
+ template: ml_1min_users_sockets_dim
+       on: users.sockets
+    class: Anomaly
+     type: Users
+component: Sockets
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each users.sockets dimension
