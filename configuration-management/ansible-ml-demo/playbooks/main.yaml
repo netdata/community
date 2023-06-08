@@ -1,5 +1,9 @@
 ---
+- name: configure ml demo room nodes
+  hosts: all
+  vars_files:
+    - ../vars/vars.yml
 - import_playbook: ../tasks/ping.yaml
-- import_playbook: ../tasks/netdata-health-ml-config.yaml
+- import_playbook: ../tasks/netdata-config-health-ml.yaml
 - import_playbook: ../tasks/netdata-restart.yaml
 - import_playbook: ../tasks/netdata-status.yaml

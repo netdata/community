@@ -1,0 +1,43 @@
+
+# node ar 1min
+ template: ml_1min_node_ar
+       on: anomaly_detection.anomaly_rate
+    class: Anomaly
+     type: System
+component: Node
+   lookup: average -1m foreach anomaly_rate
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min node level anomaly rate
+
+# chart ar alerts
+{% for chart in netdata_health_ml_charts %}
+# {{ chart }} chart
+ template: ml_1min_{{ chart.replace('.', '_') }}
+       on: {{ chart }}
+    class: Anomaly
+     type: System
+component: CPU
+   lookup: average -1m anomaly-bit of *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for {{ chart }} chart
+{% endfor %}
+
+# dims ar alerts
+{% for chart in netdata_health_ml_dims %}
+# {{ chart }} chart
+ template: ml_1min_{{ chart.replace('.','_') }}_dim
+       on: {{ chart }}
+    class: Anomaly
+   lookup: average -1m anomaly-bit foreach *
+    units: %
+    every: 30s
+     warn: $this > (($status >= $WARNING)  ? (1) : (5))
+     crit: $this > (($status == $CRITICAL) ? (5) : (100))
+     info: rolling 1min anomaly rate for each {{ chart }} dimension
+{% endfor %}

@@ -1,10 +1,12 @@
 ---
-- name: Netdata service status
+- name: netdata status
   hosts: all
+
   tasks:
-    - name: Return service state information as fact data
+
+    - name: get service state information
       service_facts:
-    
+
     - name: Show the status of netdata service
       debug:
         msg:

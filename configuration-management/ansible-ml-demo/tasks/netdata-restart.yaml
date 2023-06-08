@@ -1,10 +1,11 @@
 ---
-- name: Netdata restart
+- name: restart netdata
   hosts: all
   become: yes
+
   tasks:
-    - name: Restart netdata
+
+    - name: restart netdata
       systemd:
         name: netdata
         state: restarted
-      register: netdata_restart

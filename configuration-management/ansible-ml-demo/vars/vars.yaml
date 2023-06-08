@@ -1,0 +1,17 @@
+netdata_health_ml_charts:
+  - system.cpu
+  - system.ram
+  - system.io
+  - system.net
+  - system.processes
+netdata_health_ml_dims:
+  - apps.cpu
+  - apps.mem
+  - apps.threads
+  - apps.processes
+  - apps.sockets
+  - users.cpu
+  - users.mem
+  - users.threads
+  - users.processes
+  - users.sockets
