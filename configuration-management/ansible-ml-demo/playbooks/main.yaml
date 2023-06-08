@@ -1,0 +1,4 @@
+---
+- import_playbook: ../tasks/ping.yaml
+- import_playbook: ../tasks/netdata-restart.yaml
+- import_playbook: ../tasks/netdata-status.yaml

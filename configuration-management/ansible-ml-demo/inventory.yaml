@@ -1,0 +1,12 @@
+beastvms:
+  hosts:
+    ml-demo-stable:
+      ansible_host: 10.10.18.159
+    ml-demo-nightly:
+      ansible_host: 10.10.18.138
+    ml-demo-nightly-48h-training:
+      ansible_host: 10.10.18.165
+    ml-demo-nightly-72h-training:
+      ansible_host: 10.10.18.172
+  vars:
+    ansible_user: andrewm4894

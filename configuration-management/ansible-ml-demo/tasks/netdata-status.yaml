@@ -1,0 +1,11 @@
+---
+- name: Netdata service status
+  hosts: all
+  tasks:
+    - name: Return service state information as fact data
+      service_facts:
+    
+    - name: Show the status of netdata service
+      debug:
+        msg:
+          state: "{{ ansible_facts.services['netdata.service']['state'] }}"
