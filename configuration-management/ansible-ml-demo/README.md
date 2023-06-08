@@ -1,5 +1,7 @@
 # Ansible ML Demo
 
+Ansible resources and playbooks used for configuration management of the nodes in the [Netdata Demo Machine Learning room](https://app.netdata.cloud/spaces/netdata-demo/rooms/machine-learning/overview). 
+
 ## Useful commands
 
 ```bash
