@@ -1,0 +1,20 @@
+---
+- name: update netdata.conf
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+
+    - name: ensure /etc/netdata directory exists
+      file:
+        path: /etc/netdata
+        state: directory
+
+    - name: transfer netdata.conf
+      ansible.builtin.template:
+        src: ../templates/netdata/netdata.conf.j2
+        dest: /etc/netdata/netdata.conf
+        owner: netdata
+        group: netdata
+        mode: '0644'

@@ -13,6 +13,7 @@ component: Node
      info: rolling 1min node level anomaly rate
 
 # chart ar alerts
+
 {% for chart in netdata_health_ml_charts %}
 # {{ chart }} chart
  template: ml_1min_{{ chart.replace('.', '_') }}
@@ -26,9 +27,11 @@ component: CPU
      warn: $this > (($status >= $WARNING)  ? (1) : (5))
      crit: $this > (($status == $CRITICAL) ? (5) : (100))
      info: rolling 1min anomaly rate for {{ chart }} chart
+
 {% endfor %}
 
 # dims ar alerts
+
 {% for chart in netdata_health_ml_dims %}
 # {{ chart }} chart
  template: ml_1min_{{ chart.replace('.','_') }}_dim
@@ -40,4 +43,5 @@ component: CPU
      warn: $this > (($status >= $WARNING)  ? (1) : (5))
      crit: $this > (($status == $CRITICAL) ? (5) : (100))
      info: rolling 1min anomaly rate for each {{ chart }} dimension
+
 {% endfor %}

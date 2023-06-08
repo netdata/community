@@ -3,6 +3,8 @@
   hosts: all
   gather_facts: yes
   become: yes
+  vars_files:
+    - ../vars/vars.yaml
 
   tasks:
 
@@ -12,7 +14,7 @@
         state: directory
 
     - name: transfer health.d/ml.conf
-      copy:
+      ansible.builtin.template:
         src: ../templates/netdata/health.d/ml.conf.j2
         dest: /etc/netdata/health.d/ml.conf
         owner: netdata
