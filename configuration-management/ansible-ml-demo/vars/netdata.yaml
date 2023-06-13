@@ -15,3 +15,24 @@ claim_url: https://app.netdata.cloud
 # Force re-claiming of nodes to Netdata Cloud. Read more:
 # https://learn.netdata.cloud/docs/agent/claim#remove-and-reclaim-a-node
 reclaim: false
+
+# list of charts for chart level ml alerts
+netdata_health_ml_charts:
+  - system.cpu
+  - system.ram
+  - system.io
+  - system.net
+  - system.processes
+
+# list of dims for dim level ml alerts
+netdata_health_ml_dims:
+  - apps.cpu
+  - apps.mem
+  - apps.threads
+  - apps.processes
+  - apps.sockets
+  - users.cpu
+  - users.mem
+  - users.threads
+  - users.processes
+  - users.sockets
