@@ -1,0 +1,4 @@
+---
+# example conf.yaml
+claim_token: <your-claim-token>
+claim_rooms: <your-claim-room>
