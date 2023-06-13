@@ -19,3 +19,19 @@
         - filestressor
         - randombadguy
         - andrewm4894
+
+    - name: create cronjob for random stress usage
+      ansible.builtin.cron:
+        name: "{{ item }} random stress"
+        hour: "*/12"
+        minute: "5"
+        job: "stress-ng --random 1 --timeout 120s"
+        user: "{{ item }}"
+      with_items:
+        - cpuhog
+        - memstealer
+        - networkguy
+        - iouser
+        - filestressor
+        - randombadguy
+        - andrewm4894

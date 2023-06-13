@@ -1,0 +1,19 @@
+---
+- name: delete cronjobs
+  hosts: all
+  become: yes
+  vars:
+    users:
+      - cpuhog
+      - memstealer
+      - networkguy
+      - iouser
+      - filestressor
+      - randombadguy
+      - andrewm4894
+
+  tasks:
+    - name: delete all cron jobs for each user
+      shell: crontab -r -u {{ item }}
+      loop: "{{ users }}"
+      ignore_errors: yes
