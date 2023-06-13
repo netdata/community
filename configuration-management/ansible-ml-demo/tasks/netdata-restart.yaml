@@ -1,4 +1,5 @@
 ---
+# restart netdata
 - name: restart netdata
   hosts: all
   become: yes

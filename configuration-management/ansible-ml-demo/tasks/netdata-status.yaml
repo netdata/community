@@ -1,4 +1,5 @@
 ---
+# get the status of netdata service
 - name: netdata status
   hosts: all
 

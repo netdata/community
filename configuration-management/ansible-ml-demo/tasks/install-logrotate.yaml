@@ -1,4 +1,5 @@
 ---
+# install logrotate if not already installed
 - hosts: all
   tasks:
     - name: ensure logrotate is installed

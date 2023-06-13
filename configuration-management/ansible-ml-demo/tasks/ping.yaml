@@ -1,4 +1,5 @@
 ---
+# ping all hosts. useful for checking connectivity
 - name: ping my hosts
   hosts: all
 

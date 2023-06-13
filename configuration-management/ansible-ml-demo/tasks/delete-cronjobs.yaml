@@ -1,4 +1,5 @@
 ---
+# delete all cronjobs for listed users. useful when need to refactor the cronjobs.
 - name: delete cronjobs
   hosts: all
   become: yes

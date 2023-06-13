@@ -1,4 +1,5 @@
 ---
+# ensure /etc/netdata/netdata.conf exists and is as defined in the template
 - name: update netdata.conf
   hosts: all
   gather_facts: yes
