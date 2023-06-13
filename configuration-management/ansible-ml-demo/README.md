@@ -28,3 +28,8 @@ ansible-playbook -i inventory.yaml playbooks/main.yaml
 # run playbook with become password
 ansible-playbook -i inventory.yaml playbooks/main.yaml --ask-become-pass
 ```
+
+```bash
+# run individual task
+ansible-playbook -i inventory.yaml tasks/install-logrotate.yaml --ask-become-pass
+```
