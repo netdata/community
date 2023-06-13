@@ -1,5 +1,5 @@
 [cloud]
-    conversation log = {{ netdata_conf_cloud_conversation_log | default('yes') }}
+    conversation log = {{ netdata_conf_cloud_conversation_log | default('no') }}
 [ml]
     enabled = {{ netdata_conf_ml_enabled | default('yes') }}
     maximum num samples to train = {{ netdata_conf_ml_maximum_num_samples_to_train | default(21600) }}
