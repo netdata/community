@@ -4,6 +4,7 @@
 - import_playbook: ../tasks/ping.yaml
 - import_playbook: ../tasks/install-logrotate.yaml
 - import_playbook: ../tasks/install-stress-ng.yaml
+- import_playbook: ../tasks/install-uuidgen.yaml
 - import_playbook: ../tasks/create-users.yaml
 - import_playbook: ../tasks/create-cronjobs.yaml
 - import_playbook: ../tasks/netdata-config-health-ml.yaml
