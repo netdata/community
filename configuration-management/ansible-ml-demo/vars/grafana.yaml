@@ -1,0 +1,4 @@
+---
+# variables for Grafana
+grafana_logs_url: https://logs-prod-us-central1.grafana.net/loki/api/v1/push
+grafana_metrics_url: https://prometheus-prod-10-prod-us-central-0.grafana.net/api/prom/push

@@ -5,6 +5,7 @@
 - import_playbook: ../tasks/install-logrotate.yaml
 - import_playbook: ../tasks/install-stress-ng.yaml
 - import_playbook: ../tasks/install-uuidgen.yaml
+#- import_playbook: ../tasks/netdata/install-grafana-agent.yaml
 #- import_playbook: ../tasks/netdata/install-netdata.yaml
 #- import_playbook: ../tasks/netdata/claim-netdata.yaml
 - import_playbook: ../tasks/create-users.yaml

@@ -2,3 +2,6 @@
 # example conf.yaml
 claim_token: <your-claim-token>
 claim_rooms: <your-claim-room>
+grafana_cloud_api_key: <your-grafana-cloud-api-key>
+grafana_logs_username: <your-grafana-loki-username>
+grafana_metrics_username: <your-grafana-prometheus-username>
