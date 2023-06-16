@@ -4,7 +4,7 @@
   become: yes
  
   tasks:
-  
+
    - name: install Grafana agent
      ansible.builtin.include_role:
        name: grafana.grafana.grafana_agent
