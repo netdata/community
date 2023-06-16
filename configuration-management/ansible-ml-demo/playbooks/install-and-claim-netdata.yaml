@@ -1,0 +1,6 @@
+---
+- name: install and claim Netdata
+  hosts: all
+- import_playbook: ../tasks/netdata/install-netdata.yaml
+- import_playbook: ../tasks/netdata/claim-netdata.yaml
+- import_playbook: ../tasks/netdata/netdata-status.yaml
