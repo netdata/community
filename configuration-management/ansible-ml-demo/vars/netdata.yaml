@@ -8,13 +8,16 @@
 # Copy those strings into the variables below. `claim_url` should be
 # `https://app.netdata.cloud`. Read more:
 # https://learn.netdata.cloud/docs/agent/claim
-# claim_token: XXXXX <- set in /vars/conf.yaml (not in source control)
-# claim_rooms: XXXXX <- set in /vars/conf.yaml (not in source control)
-claim_url: https://app.netdata.cloud
+# netdata_claim_token: XXXXX <- set in /vars/conf.yaml (not in source control)
+# netdata_claim_rooms: XXXXX <- set in /vars/conf.yaml (not in source control)
+netdata_claim_url: https://app.netdata.cloud
+
+# install flags for netdata
+netdata_install_flags: "--non-interactive --reinstall"
 
 # Force re-claiming of nodes to Netdata Cloud. Read more:
 # https://learn.netdata.cloud/docs/agent/claim#remove-and-reclaim-a-node
-reclaim: false
+netdata_reclaim: false
 
 # list of charts for chart level ml alerts
 netdata_health_ml_charts:
@@ -36,3 +39,5 @@ netdata_health_ml_dims:
   - users.threads
   - users.processes
   - users.sockets
+
+netdata_error_tail_lines: 25

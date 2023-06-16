@@ -3,6 +3,8 @@
 - name: install netdata
   hosts: all
   become: true
+  vars_files:
+    - ../../vars/netdata.yaml
 
   tasks:
   - name: download the installation script
@@ -12,7 +14,7 @@
       mode: +x
 
   - name: install Netdata
-    command: ~/kickstart.sh --dont-wait
+    command: ~/kickstart.sh {{ netdata_install_flags | default('--non-interactive ') }}
 
   - name: cleanup installation script
     file:

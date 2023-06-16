@@ -4,3 +4,4 @@
 - import_playbook: ../tasks/netdata/install-netdata.yaml
 - import_playbook: ../tasks/netdata/claim-netdata.yaml
 - import_playbook: ../tasks/netdata/netdata-status.yaml
+- import_playbook: ../tasks/netdata/tail-netdata-error-log.yaml

@@ -14,7 +14,7 @@
 
     - name: transfer netdata.conf
       ansible.builtin.template:
-        src: ../templates/netdata/netdata.conf.j2
+        src: ../../templates/netdata/netdata.conf.j2
         dest: /etc/netdata/netdata.conf
         owner: netdata
         group: netdata

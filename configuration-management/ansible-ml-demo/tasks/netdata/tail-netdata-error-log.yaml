@@ -1,0 +1,16 @@
+---
+- name: tail Netdata error log
+  hosts: all
+  become: yes
+  vars_files:
+    - ../../vars/netdata.yaml
+  
+  tasks:
+
+    - name: retrieve error log
+      command: tail -n {{ netdata_error_tail_lines | default(25) }} /var/log/netdata/error.log
+      register: tail_output
+
+    - name: display log content
+      debug:
+        var: tail_output.stdout_lines

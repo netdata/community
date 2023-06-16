@@ -5,7 +5,7 @@
   gather_facts: yes
   become: yes
   vars_files:
-    - ../vars/netdata.yaml
+    - ../../vars/netdata.yaml
 
   tasks:
 
