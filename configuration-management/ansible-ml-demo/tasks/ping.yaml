@@ -1,0 +1,9 @@
+---
+# ping all hosts. useful for checking connectivity
+- name: ping my hosts
+  hosts: all
+
+  tasks:
+
+   - name: ping my hosts
+     ansible.builtin.ping:

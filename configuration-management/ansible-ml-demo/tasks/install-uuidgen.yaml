@@ -1,0 +1,10 @@
+---
+# install uuidgen if not already installed
+- hosts: all
+  tasks:
+    - name: ensure uuid-runtime (uuidgen) is installed
+      apt:
+        name: uuid-runtime
+        state: present
+        update_cache: yes
+      become: yes

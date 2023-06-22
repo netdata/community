@@ -1,0 +1,7 @@
+---
+# example conf.yaml
+netdata_claim_token: <your-claim-token>
+netdata_claim_rooms: <your-claim-room>
+grafana_cloud_api_key: <your-grafana-cloud-api-key>
+grafana_logs_username: <your-grafana-loki-username>
+grafana_metrics_username: <your-grafana-prometheus-username>

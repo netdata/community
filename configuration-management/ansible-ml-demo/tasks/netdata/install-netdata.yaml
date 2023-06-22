@@ -1,0 +1,22 @@
+---
+# install netdata using kickstart.sh
+- name: install netdata
+  hosts: all
+  become: true
+  vars_files:
+    - ../../vars/netdata.yaml
+
+  tasks:
+  - name: download the installation script
+    get_url:
+      url: https://my-netdata.io/kickstart.sh
+      dest: ~/kickstart.sh
+      mode: +x
+
+  - name: install Netdata
+    command: ~/kickstart.sh {{ netdata_install_flags | default('--non-interactive ') }}
+
+  - name: cleanup installation script
+    file:
+      path: ~/kickstart.sh
+      state: absent

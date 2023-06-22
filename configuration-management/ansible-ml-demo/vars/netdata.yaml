@@ -1,0 +1,43 @@
+---
+# Variables for Netdata
+
+# Set Netdata Cloud claiming details. To find your `claim_token` and
+# `claim_room`, go to Netdata Cloud, then click on your Space's name in the top
+# navigation, then click on `Manage your Space`. Click on the `Nodes` tab in the
+# panel that appears, which displays a script with `token` and `room` strings.
+# Copy those strings into the variables below. `claim_url` should be
+# `https://app.netdata.cloud`. Read more:
+# https://learn.netdata.cloud/docs/agent/claim
+# netdata_claim_token: XXXXX <- set in /vars/conf.yaml (not in source control)
+# netdata_claim_rooms: XXXXX <- set in /vars/conf.yaml (not in source control)
+netdata_claim_url: https://app.netdata.cloud
+
+# install flags for netdata
+netdata_install_flags: "--non-interactive --reinstall"
+
+# Force re-claiming of nodes to Netdata Cloud. Read more:
+# https://learn.netdata.cloud/docs/agent/claim#remove-and-reclaim-a-node
+netdata_reclaim: false
+
+# list of charts for chart level ml alerts
+netdata_health_ml_charts:
+  - system.cpu
+  - system.ram
+  - system.io
+  - system.net
+  - system.processes
+
+# list of dims for dim level ml alerts
+netdata_health_ml_dims:
+  - apps.cpu
+  - apps.mem
+  - apps.threads
+  - apps.processes
+  - apps.sockets
+  - users.cpu
+  - users.mem
+  - users.threads
+  - users.processes
+  - users.sockets
+
+netdata_error_tail_lines: 25

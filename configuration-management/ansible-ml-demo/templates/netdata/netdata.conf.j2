@@ -1,0 +1,8 @@
+[cloud]
+    conversation log = {{ netdata_conf_cloud_conversation_log | default('no') }}
+[ml]
+    enabled = {{ netdata_conf_ml_enabled | default('yes') }}
+    maximum num samples to train = {{ netdata_conf_ml_maximum_num_samples_to_train | default(21600) }}
+    train every = {{ netdata_conf_ml_train_every | default(10800) }}
+    number of models per dimension = {{ netdata_conf_ml_number_of_models_per_dimension | default(9) }}
+    enable statistics charts = {{ netdata_conf_ml_enable_statistics_charts | default('yes') }}

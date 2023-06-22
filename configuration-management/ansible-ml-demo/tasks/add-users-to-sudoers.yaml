@@ -1,0 +1,15 @@
+---
+- name: add users to sudoers
+  hosts: all
+  become: yes
+  
+  tasks:
+    
+    - name: add users to sudoers
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        line: '{{ item }} ALL=(ALL:ALL) ALL'
+        validate: 'visudo -cf %s'
+      with_items:
+        - andrewm4894

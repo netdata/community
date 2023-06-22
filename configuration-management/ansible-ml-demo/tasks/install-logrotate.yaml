@@ -1,0 +1,10 @@
+---
+# install logrotate if not already installed
+- hosts: all
+  tasks:
+    - name: ensure logrotate is installed
+      apt:
+        name: logrotate
+        state: present
+        update_cache: yes
+      become: yes

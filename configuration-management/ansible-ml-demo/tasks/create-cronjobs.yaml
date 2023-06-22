@@ -1,0 +1,38 @@
+---
+# create some cronjobs to run stress-ng commands for each user
+- name: create cronjobs
+  hosts: all
+  become: yes
+
+  tasks:
+
+    - name: create cronjob for steady usage
+      ansible.builtin.cron:
+        name: "{{ item }} steady usage"
+        minute: "*/3"
+        job: "stress-ng -c 0 -l 5 -t 200s"
+        user: "{{ item }}"
+      with_items:
+        - cpuhog
+        - memstealer
+        - networkguy
+        - iouser
+        - filestressor
+        - randombadguy
+        - andrewm4894
+
+    - name: create cronjob for random stress usage
+      ansible.builtin.cron:
+        name: "{{ item }} random stress"
+        hour: "*/12"
+        minute: "5"
+        job: "stress-ng --random 1 --timeout 120s"
+        user: "{{ item }}"
+      with_items:
+        - cpuhog
+        - memstealer
+        - networkguy
+        - iouser
+        - filestressor
+        - randombadguy
+        - andrewm4894

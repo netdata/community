@@ -1,0 +1,23 @@
+---
+# ensure /etc/netdata/health.d/ml.conf exists and is as defined in the template
+- name: update health.d/ml.conf
+  hosts: all
+  gather_facts: yes
+  become: yes
+  vars_files:
+    - ../../vars/netdata.yaml
+
+  tasks:
+
+    - name: ensure /etc/netdata/health.d directory exists
+      file:
+        path: /etc/netdata/health.d
+        state: directory
+
+    - name: transfer health.d/ml.conf
+      ansible.builtin.template:
+        src: ../templates/netdata/health.d/ml.conf.j2
+        dest: /etc/netdata/health.d/ml.conf
+        owner: netdata
+        group: netdata
+        mode: '0644'

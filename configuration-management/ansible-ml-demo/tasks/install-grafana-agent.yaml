@@ -1,0 +1,22 @@
+---
+- name: install Grafana agent
+  hosts: all
+  become: yes
+ 
+  tasks:
+
+   - name: install Grafana agent
+     ansible.builtin.include_role:
+       name: grafana.grafana.grafana_agent
+     vars:
+       agent_config_local_path: ../templates/grafana/grafana-agent-config.yaml.j2
+       systemd_config: |
+         [Unit]
+         Description=Grafana Agent
+         [Service]
+         User=grafana-agent
+         Environment=HOSTNAME=%H
+         ExecStart={{ agent_binary_location }}/agent-{{ linux_architecture }} -config.expand-env -config.file={{ agent_config_location }}/agent-config.yaml
+         Restart=always
+         [Install]
+         WantedBy=multi-user.target

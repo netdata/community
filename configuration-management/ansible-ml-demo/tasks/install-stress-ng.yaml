@@ -1,0 +1,10 @@
+---
+# install stress-ng if not already installed
+- hosts: all
+  tasks:
+    - name: ensure stress-ng is installed
+      apt:
+        name: stress-ng
+        state: present
+        update_cache: yes
+      become: yes
