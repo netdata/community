@@ -1,0 +1,20 @@
+---
+- name: systemd limit file sizes
+  hosts: all
+  become: yes
+  vars_files:
+    - "../../vars/systemd.yaml"
+  
+  tasks:
+    
+    - name: limit the total size of journald logs
+      lineinfile:
+        dest: /etc/systemd/journald.conf
+        regexp: ^SystemMaxUse=
+        line: SystemMaxUse={{ systemd_journal_system_max_use }}
+
+    - name: limit the size of each journald log file
+      lineinfile:
+        dest: /etc/systemd/journald.conf
+        regexp: ^SystemMaxFileSize=
+        line: SystemMaxFileSize={{ systemd_journal_system_max_file_size }}
