@@ -1,0 +1,7 @@
+---
+- name: vacuum systemd logs
+  hosts: all
+  become: true
+  tasks:
+    - name: remove old systemd journal logs
+      shell: journalctl --vacuum-time=1d

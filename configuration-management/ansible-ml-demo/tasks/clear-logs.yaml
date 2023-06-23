@@ -1,0 +1,10 @@
+---
+- name: clear logs
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: remove log files
+      command: rm -rf /var/log/*
+      ignore_errors: true

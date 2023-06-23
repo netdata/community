@@ -142,3 +142,5 @@ cython_debug/
 configuration-management/.DS_Store
 .DS_Store
 configuration-management/.DS_Store
+
+conf.yaml
