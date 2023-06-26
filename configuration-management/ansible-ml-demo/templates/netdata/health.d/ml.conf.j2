@@ -16,17 +16,17 @@ component: Node
 
 {% for chart in netdata_health_ml_charts %}
 # {{ chart }} chart
- template: ml_1min_{{ chart.replace('.', '_') }}
+ template: m5_1min_{{ chart.replace('.', '_') }}
        on: {{ chart }}
     class: Anomaly
      type: System
 component: CPU
-   lookup: average -1m anomaly-bit of *
+   lookup: average -5m anomaly-bit of *
     units: %
     every: 30s
      warn: $this > (($status >= $WARNING)  ? (1) : (5))
      crit: $this > (($status == $CRITICAL) ? (5) : (100))
-     info: rolling 1min anomaly rate for {{ chart }} chart
+     info: rolling 5min anomaly rate for {{ chart }} chart
 
 {% endfor %}
 
@@ -34,14 +34,14 @@ component: CPU
 
 {% for chart in netdata_health_ml_dims %}
 # {{ chart }} chart
- template: ml_1min_{{ chart.replace('.','_') }}_dim
+ template: ml_5min_{{ chart.replace('.','_') }}_dim
        on: {{ chart }}
     class: Anomaly
-   lookup: average -1m anomaly-bit foreach *
+   lookup: average -5m anomaly-bit foreach *
     units: %
     every: 30s
      warn: $this > (($status >= $WARNING)  ? (1) : (5))
      crit: $this > (($status == $CRITICAL) ? (5) : (100))
-     info: rolling 1min anomaly rate for each {{ chart }} dimension
+     info: rolling 5min anomaly rate for each {{ chart }} dimension
 
 {% endfor %}
