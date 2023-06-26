@@ -16,7 +16,7 @@
 
     - name: transfer health.d/ml.conf
       ansible.builtin.template:
-        src: ../templates/netdata/health.d/ml.conf.j2
+        src: ../../templates/netdata/health.d/ml.conf.j2
         dest: /etc/netdata/health.d/ml.conf
         owner: netdata
         group: netdata
