@@ -16,7 +16,7 @@ component: Node
 
 {% for chart in netdata_health_ml_charts %}
 # {{ chart }} chart
- template: m5_1min_{{ chart.replace('.', '_') }}
+ template: ml_5min_{{ chart.replace('.', '_') }}
        on: {{ chart }}
     class: Anomaly
      type: System
