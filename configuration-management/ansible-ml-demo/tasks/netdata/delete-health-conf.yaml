@@ -1,0 +1,18 @@
+---
+- name: delete *.conf files in /etc/netdata/health.d/ folder
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+
+    - name: check if /etc/netdata/health.d/ folder exists
+      stat:
+        path: /etc/netdata/health.d/
+      register: folder_stat
+
+    - name: delete *.conf files if the folder exists
+      file:
+        path: /etc/netdata/health.d/*.conf
+        state: absent
+      when: folder_stat.stat.exists
