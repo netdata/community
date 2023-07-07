@@ -1,0 +1,8 @@
+---
+- name: configure Netdata
+  hosts: all
+- import_playbook: ../../tasks/netdata/status.yaml
+- import_playbook: ../../tasks/netdata/config-netdata-conf.yaml
+- import_playbook: ../../tasks/netdata/config-health-ml.yaml
+- import_playbook: ../../tasks/netdata/restart.yaml
+- import_playbook: ../../tasks/netdata/status.yaml
