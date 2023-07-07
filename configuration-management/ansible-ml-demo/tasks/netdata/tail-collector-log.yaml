@@ -1,5 +1,5 @@
 ---
-- name: tail Netdata error log
+- name: tail Netdata collector log
   hosts: all
   become: yes
   vars_files:
@@ -7,8 +7,8 @@
   
   tasks:
 
-    - name: retrieve error log
-      command: tail -n {{ netdata_error_log_tail_lines | default(25) }} /var/log/netdata/error.log
+    - name: retrieve collector log
+      command: tail -n {{ netdata_collector_log_tail_lines | default(25) }} /var/log/netdata/collector.log
       register: tail_output
 
     - name: display log content

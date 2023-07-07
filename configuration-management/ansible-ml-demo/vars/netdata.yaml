@@ -40,4 +40,5 @@ netdata_health_ml_dims:
   - users.processes
   - users.sockets
 
-netdata_error_tail_lines: 25
+netdata_error_log_tail_lines: 25
+netdata_collector_log_tail_lines: 25
