@@ -1,7 +1,7 @@
 ---
 # create some users
 - name: create users
-  hosts: all
+  hosts: all,!ml-demo-parent
   become: yes
 
   tasks:

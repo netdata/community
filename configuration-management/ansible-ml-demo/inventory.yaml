@@ -1,5 +1,7 @@
 beastvms:
   hosts:
+    ml-demo-parent:
+      ansible_host: 10.10.18.124
     ml-demo-stable:
       ansible_host: 10.10.18.159
     ml-demo-nightly:

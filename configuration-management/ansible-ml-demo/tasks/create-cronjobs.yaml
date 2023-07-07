@@ -1,7 +1,7 @@
 ---
 # create some cronjobs to run stress-ng commands for each user
 - name: create cronjobs
-  hosts: all
+  hosts: all,!ml-demo-parent
   become: yes
 
   tasks:
