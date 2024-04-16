@@ -1,5 +1,7 @@
 # S.M.A.R.T metrics windows collector
 
+This installer enables Netdata to collect basic windows metrics (Using windows_exporter which is packaged as part of the MSI) and S.M.A.R.T metrics from windows machines. Depending on the make, manufacturer and protocol used by the disks the metrics collected may vary.
+
 ## Pre-requisites
 - Install smartmontools (you can find the download link [here](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage).)
 
