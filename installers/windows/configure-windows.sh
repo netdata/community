@@ -11,6 +11,18 @@ clean_data() {
 configure_address() {
     ADDRESS="$1"
 
+    # Determine Netdata configuration directory
+    if [[ -d "/etc/netdata" ]]; then
+        NETDATA_CONF_DIR="/etc/netdata"
+        STOCK_CONF_DIR="/usr/lib/netdata/conf.d"  # Default stock directory for /etc/netdata
+    elif [[ -d "/opt/netdata/etc/netdata" ]]; then
+        NETDATA_CONF_DIR="/opt/netdata/etc/netdata"
+        STOCK_CONF_DIR="/opt/netdata/usr/lib/netdata/conf.d"  # Adjusted stock directory for /opt/netdata/etc/netdata
+    else
+        echo "Netdata working directory could not be located. Make sure Netdata is installed."
+        exit 1
+    fi 
+
     echo "Processing address: $ADDRESS"
 
     # Fetch data
@@ -32,15 +44,29 @@ configure_address() {
     KERNEL_VERSION=$(echo "$DATA" | grep 'Kernel:' | cut -d '=' -f2)
     ARCHITECTURE=$(echo "$DATA" | grep 'Architecture:' | cut -d '=' -f2)
     
-    # Define configuration file paths
-    WINDOWS_CONF_PATH="/etc/netdata/go.d/windows.conf"
-    VNODES_CONF_PATH="/etc/netdata/vnodes/vnodes.conf"
-    if [[ ! -f "$WINDOWS_CONF_PATH" ]]; then
-        WINDOWS_CONF_PATH="/opt/netdata/etc/netdata/go.d/windows.conf"
-    fi
-    if [[ ! -f "$VNODES_CONF_PATH" ]]; then
-        VNODES_CONF_PATH="/opt/netdata/etc/netdata/vnodes/vnodes.conf"
-    fi
+    # Define configuration file paths based on determined directory
+    WINDOWS_CONF_PATH="${NETDATA_CONF_DIR}/go.d/windows.conf"
+    VNODES_CONF_PATH="${NETDATA_CONF_DIR}/vnodes/vnodes.conf"
+
+    # Function to initialize configuration file from template if not exists
+    initialize_config() {
+        local conf_file=$1
+        local conf_type=$2  # Explicitly pass the subdirectory type (e.g., 'go.d' or 'vnodes')
+        local stock_file="${STOCK_CONF_DIR}/${conf_type}/${conf_file##*/}"  # Full path to the stock file with subdirectory
+        if [[ ! -f "$conf_file" ]]; then
+            if [[ -f "$stock_file" ]]; then
+                echo "Initializing $conf_file from stock configuration."
+                cp "$stock_file" "$conf_file"
+            else
+                echo "Template for $conf_file not found. Creating an empty file."
+                touch "$conf_file"
+            fi
+        fi
+    }
+    
+    # Check and initialize each configuration file with explicit subdirectory passed
+    initialize_config "$WINDOWS_CONF_PATH" "go.d"
+    initialize_config "$VNODES_CONF_PATH" "vnodes"
     
     # Check and append/update windows.conf
     if [[ -f "$WINDOWS_CONF_PATH" ]]; then
