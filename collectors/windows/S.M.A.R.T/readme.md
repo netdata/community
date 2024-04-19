@@ -11,44 +11,14 @@ This installer enables Netdata to collect basic windows metrics (Using windows_e
 - Verify that metrics are being collected by visiting localhost:19997/metrics
 
 ## Configuration
-- Download the [configure-windows.sh](https://github.com/netdata/community/blob/main/collectors/windows/S.M.A.R.T/configure-windows.sh) script and copy it to your netdata directory (usually /etc/netdata or /opt/netdata/etc/netdata)
-- Run the script
-```sudo ./configure-windows.sh <IP or Hostname or DNS name of Windows server>```
-- You can also provide a list of IPs (or Hostnames) in a file as input to configure multiple windows machines in one go.
 
-Alternatively you can manually enable the configuration as follows (if you face issues with the configure-windows.sh script):
-- Update windows.conf
-```
-sudo ./edit-config go.d/windows.conf
-```
-Add the following configuration
-```
-jobs:
-  - name: <WINDOWS_HOSTNAME>
-    vnode: <WINDOWS_HOSTNAME>
-    url: <WINDOWS_IP_OR_HOSTNAME>:9182/metrics
-```
- 
-- Update prometheus.conf
-```
-sudo ./edit-config go.d/prometheus.conf
-```
-Add the following configuration
-```
-jobs:
-  - name: <JOB_HOSTNAME>
-    app: SMART
-    vnode: <WINDOWS_HOSTNAME>
-    url: <WINDOWS_IP_OR_HOSTNAME>:19997/metrics
-```
-- Update vnodes.conf
-```
-sudo ./edit-config vnodes/vnodes.conf
-```
-Add the following configuration
-```
-- name: <WINDWOWS_HOSTNAME>
-  guid: <GUID, you an get this by running uuidgen on the terminal>
-```
+- On the Netdata Cloud UI, click on the gear icon next to the node you want to configure in the Nodes tab
+- Search for `prometheus` and click on the `+` to add a new job
+- In the window that opens fill in the following information
+  - Configuration name (Eg: SmartD)
+  - URL (Eg: 10.123.123.1:19997/metrics)
+  - Application (Eg: SMART) 
+- Click test to test the configuration and save to save and apply it.
+- If the configuration was successful you should now see the metrics (If there were errors, you will see the error log)
 
 This completes the installation and configuration, you should see the charts on your Netdata Cloud UI (app.netdata.cloud).
