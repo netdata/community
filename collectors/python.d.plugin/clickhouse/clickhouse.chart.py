@@ -238,11 +238,32 @@ for category, metrics in _metrics_summary.items():
         fullname = _fullname(category, name)
         ORDER.append(fullname)
         # Options: None, <description>, <dimension>, <group>, <name>, <chart type>
+        units = "requests" if "Request" in name else \
+                "queries" if "Query" in name else \
+                "threads" if "Thread" in name else \
+                "syscalls" if "syscalls" in name else \
+                "connections" if "Connection" in name else \
+                "tasks" if "Task" in name else \
+                "nodes" if "Node" in name else \
+                "sessions" if "Session" in name else \
+                "threads" if "Thread" in name else \
+                "bytes" if "Bytes" in name else \
+                "bytes" if "Memory" in name else \
+                "bytes" if "malloc" in name else \
+                "files" if "File" in name else \
+                "reads" if "ReadBufferFromFile" in name else \
+                "writes" if "WriteBufferFromFile" in name else \
+                "seconds" if "Uptime" in name else \
+                "microseconds" if "Microseconds" in name else \
+                "chunks" if "Chunks" in name else \
+                "pages" if "Page" in name else \
+                "events"
         fullname2 = "clickhouse." + fullname
         CHARTS[fullname] = {
             "lines": [[fullname, None, metric_type]],
-            "options": [None, desc or name, "units", category, fullname2, chart_type],
+            "options": [None, desc or name, units, category, fullname2, chart_type],
         }
+
 
 
 # Netdata breaks silently on unexpected keys :(
