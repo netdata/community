@@ -32,16 +32,11 @@ speedtest_upload_jitter=0
 speedtest_packetloss=0
 
 speedtest_get() {
-  # do all the work to collect / calculate the values
-  # for each dimension
-  #
-  # Remember:
-  # 1. KEEP IT SIMPLE AND SHORT
-  # 2. AVOID FORKS (avoid piping commands)
-  # 3. AVOID CALLING TOO MANY EXTERNAL PROGRAMS
-  # 4. USE LOCAL VARIABLES (global variables may overlap with other modules)
+  # Pre-accept license and GDPR if not already done
+  speedtest --accept-license --accept-gdpr --format=csv > /dev/null 2>&1 || true
 
-  output=$(speedtest --format=csv)
+  # Capture speedtest output
+  output=$(speedtest --accept-license --accept-gdpr --format=csv 2>&1)
 
   speedtest_download=$(($(echo "$output" | awk -F'","' '{print $6}' | tr -d '"')*8/1000))
   speedtest_upload=$(($(echo "$output" | awk -F'","' '{print $7}' | tr -d '"')*8/1000))
