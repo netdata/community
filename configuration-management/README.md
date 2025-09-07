@@ -30,6 +30,8 @@ ansible-playbook -i hosts playbook.yml
 - `reclaim`: Force re-claiming of nodes (default: false)
 - `dbengine_multihost_disk_space`: Database size in MiB (default: 2048)
 - `web_mode`: Agent web server mode (default: none)
+- `netdata_channel`: Installation channel - 'stable' or 'nightly' (default: stable)
+- `netdata_auto_updates`: Enable automatic updates (default: false)
 
 #### Tasks Performed
 
