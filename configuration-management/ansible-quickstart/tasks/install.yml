@@ -1,22 +1,15 @@
 ---
+- name: Download the installation script
+  ansible.builtin.get_url:
+    url: https://my-netdata.io/kickstart.sh
+    dest: ~/kickstart.sh
+    mode: +x
+
 - name: Install Netdata
-  hosts: all
-  vars_files:
-    - "../vars/main.yml"
-  become: true
-  become_method: sudo
+  ansible.builtin.command: ~/kickstart.sh --dont-wait
+  changed_when: true
 
-  tasks:
-  - name: Download the installation script
-    get_url:
-      url: https://my-netdata.io/kickstart.sh
-      dest: ~/kickstart.sh
-      mode: +x
-
-  - name: Install Netdata
-    command: ~/kickstart.sh --dont-wait
-
-  - name: Cleanup installation script
-    file:
-      path: ~/kickstart.sh
-      state: absent
+- name: Cleanup installation script
+  ansible.builtin.file:
+    path: ~/kickstart.sh
+    state: absent

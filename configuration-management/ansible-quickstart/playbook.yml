@@ -1,0 +1,23 @@
+---
+- name: Install and configure Netdata
+  hosts: all
+  vars_files:
+    - vars/main.yml
+  become: true
+  become_method: sudo
+
+  tasks:
+    - name: Import installation tasks
+      ansible.builtin.import_tasks: tasks/install.yml
+
+    - name: Import configuration tasks
+      ansible.builtin.import_tasks: tasks/configure.yml
+
+    - name: Import claiming tasks
+      ansible.builtin.import_tasks: tasks/claim.yml
+
+  handlers:
+    - name: Restart Netdata
+      ansible.builtin.service:
+        name: netdata
+        state: restarted
