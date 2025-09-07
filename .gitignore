@@ -144,3 +144,6 @@ configuration-management/.DS_Store
 configuration-management/.DS_Store
 
 conf.yaml
+
+# Ansible
+.ansible
