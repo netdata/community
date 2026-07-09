@@ -1,1 +1,3 @@
-See https://github.com/netdata/netdata/tree/master/packaging/installer/methods/ansible.md
+# Netdata Ansible Quickstart
+
+For complete usage instructions and configuration options, see the [Configuration Management README](../README.md#ansible).

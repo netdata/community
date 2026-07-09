@@ -144,3 +144,10 @@ configuration-management/.DS_Store
 configuration-management/.DS_Store
 
 conf.yaml
+
+# Ansible
+.ansible
+
+# PR summaries (may contain sensitive info)
+PR_SUMMARY.md
+**/PR_SUMMARY.md

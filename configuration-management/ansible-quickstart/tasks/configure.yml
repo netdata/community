@@ -1,23 +1,10 @@
 ---
-- name: Configure Netdata
-  hosts: all
-  vars_files:
-    - "../vars/main.yml"
+- name: Configure Netdata with template
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/templates/netdata.conf.j2"
+    dest: /etc/netdata/netdata.conf
+    owner: root
+    group: root
+    mode: '0755'
   become: true
-  become_method: sudo
-
-  tasks:
-  - template:
-      src: ../templates/netdata.conf.j2
-      dest: /etc/netdata/netdata.conf
-      owner: root
-      group: root
-      mode: u=wrx,g=rx,o=r,+x
-    notify: Restart Netdata
-    become: true
-  
-  handlers:
-  - name: Restart Netdata
-    service:
-      name: netdata
-      state: restarted
+  notify: Restart Netdata

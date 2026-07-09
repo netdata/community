@@ -1,22 +1,52 @@
 ---
-- name: Install Netdata
-  hosts: all
-  vars_files:
-    - "../vars/main.yml"
+- name: Download the Netdata kickstart script
+  ansible.builtin.get_url:
+    url: https://get.netdata.cloud/kickstart.sh
+    dest: /tmp/netdata-kickstart.sh
+    mode: +x
+
+- name: Check if Netdata is already installed
+  ansible.builtin.stat:
+    path: /usr/sbin/netdata
+  register: netdata_installed
+  when: reclaim
+
+- name: Install and claim Netdata (new installation)
+  ansible.builtin.command: >
+    /tmp/netdata-kickstart.sh
+    {% if netdata_channel == 'stable' %}--stable-channel{% endif %}
+    {% if netdata_channel == 'nightly' %}--nightly-channel{% endif %}
+    --non-interactive
+    {% if not netdata_auto_updates %}--no-updates{% endif %}
+    --claim-token {{ claim_token }}
+    --claim-rooms {{ claim_rooms }}
+    --claim-url {{ claim_url }}
+  when: not reclaim or (reclaim and not netdata_installed.stat.exists)
+  changed_when: true
   become: true
-  become_method: sudo
 
-  tasks:
-  - name: Download the installation script
-    get_url:
-      url: https://my-netdata.io/kickstart.sh
-      dest: ~/kickstart.sh
-      mode: +x
+- name: Uninstall existing Netdata (for clean reclaim)
+  ansible.builtin.command: /tmp/netdata-kickstart.sh --uninstall --non-interactive
+  when: reclaim and netdata_installed.stat.exists
+  changed_when: true
+  become: true
+  failed_when: false
 
-  - name: Install Netdata
-    command: ~/kickstart.sh --dont-wait
+- name: Fresh install and claim Netdata (after uninstall)
+  ansible.builtin.command: >
+    /tmp/netdata-kickstart.sh
+    {% if netdata_channel == 'stable' %}--stable-channel{% endif %}
+    {% if netdata_channel == 'nightly' %}--nightly-channel{% endif %}
+    --non-interactive
+    {% if not netdata_auto_updates %}--no-updates{% endif %}
+    --claim-token {{ claim_token }}
+    --claim-rooms {{ claim_rooms }}
+    --claim-url {{ claim_url }}
+  when: reclaim and netdata_installed.stat.exists
+  changed_when: true
+  become: true
 
-  - name: Cleanup installation script
-    file:
-      path: ~/kickstart.sh
-      state: absent
+- name: Cleanup installation script
+  ansible.builtin.file:
+    path: /tmp/netdata-kickstart.sh
+    state: absent

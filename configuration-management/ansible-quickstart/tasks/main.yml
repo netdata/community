@@ -1,8 +1,11 @@
 ---
 # Tasks file for Netdata
 
-- import_playbook: install.yml
+- name: Import installation tasks
+  ansible.builtin.import_tasks: install.yml
 
-- import_playbook: configure.yml
+- name: Import configuration tasks
+  ansible.builtin.import_tasks: configure.yml
 
-- import_playbook: claim.yml
+- name: Import claiming tasks
+  ansible.builtin.import_tasks: claim.yml
